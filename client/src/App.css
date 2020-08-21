@@ -1,0 +1,113 @@
+a {color: black; text-decoration: none;}         /* Unvisited link  */
+a:visited {text-decoration: none;} /* Visited link    */
+a:hover {text-decoration: none;}   /* Mouse over link */
+a:active {text-decoration: none;}  /* Selected link   */
+
+body,html{
+	margin: 0;
+	font-size: 16px;
+	font-family: Defualt;
+	-webkit-tap-highlight-color:transparent;
+	font-size: 14px;
+}
+input{
+	outline: none;
+}
+div{
+	font-family: Defualt;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+Link{
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+								  supported by Chrome, Edge, Opera and Firefox */
+		text-decoration: none;
+		color: black;
+}
+
+.wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.imageCarousel {
+	display: block;
+	width: auto;
+	height: 250px;
+	margin-right: 5px;
+  }
+.carouselContainer{
+	display: flex;
+	overflow-x: scroll;
+	width: 100%;
+	background-color: #E6E6E6;
+}
+
+.overlayBlack{
+	position: absolute; 
+	top: 0; 
+	background-image: linear-gradient(to bottom,black, rgba(0,0,0,0));
+	height: 50px; 
+	max-width: 100%;
+	width: 100%;
+	opacity:1;
+	color: white;
+}
+
+.backIcon{
+	margin-top: 20px;
+	margin-left: 20px;
+	color: #FFFF;
+}
+
+.displayTitle{
+	margin: 10px 10px;
+	max-width: 100%;
+	font-weight: 600;
+	align-self: center;
+	font-size: 16px;
+	display: flex;
+}
+
+.mapIcon{
+	margin-left: auto;
+	margin-right: 20px;
+}
+
+.displayAge{
+	background-color: #58f73b;
+	padding: 5px;
+    width: auto;
+    color: white;
+    font-size: 10px;
+	border-radius: 3px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.displayType{
+	background-color: #f83b82;
+    margin-left: 10px;
+    padding: 5px;
+    width: auto;
+    white-space: nowrap;
+    color: white;
+    font-size: 10px;
+    border-radius: 3px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+

@@ -12,23 +12,23 @@ import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import firebase, { db } from '../../firebase'
 import getUser from '../../Database/getUer';
-import { Link } from '@material-ui/core';
+import { Link } from 'react-router-dom'
 
 const general = [
     {
         name: "Your Classes",
         icon: <SchoolOutlinedIcon />,
-        link: ""
+        link: "/your-classes"
     },
     {
         name: "Your Payments",
         icon: <PaymentOutlinedIcon />,
-        link: ""
+        link: "/your-payments"
     },
     {
         name: "List Your Classes",
         icon: <ListAltOutlinedIcon />,
-        link: ""
+        link: "/list-your-classes"
     }
 ]
 
@@ -36,12 +36,12 @@ const help = [
     {
         name: "Help",
         icon: <HelpOutlineOutlinedIcon />,
-        link: ""
+        link: "/help"
     },
     {
         name: "About",
         icon: <InfoOutlinedIcon />,
-        link: ""
+        link: "/about"
     }
 ]
 
@@ -135,12 +135,14 @@ export class Account extends Component {
                         {
                             general.map(item => {
                                 return (
-                                    <ListItem button>
-                                        <ListItemIcon>
-                                            {item.icon}
-                                        </ListItemIcon>
-                                        <ListItemText primary={<div>{item.name}</div>} />
-                                    </ListItem>
+                                    <Link to={item.link} >
+                                        <ListItem button>
+                                            <ListItemIcon>
+                                                {item.icon}
+                                            </ListItemIcon>
+                                            <ListItemText primary={<div>{item.name}</div>} />
+                                        </ListItem>
+                                    </Link>
                                 )
                             })
                         }
@@ -156,12 +158,14 @@ export class Account extends Component {
                         {
                             help.map(item => {
                                 return (
-                                    <ListItem button>
-                                        <ListItemIcon>
-                                            {item.icon}
-                                        </ListItemIcon>
-                                        <ListItemText primary={<div>{item.name}</div>} />
-                                    </ListItem>
+                                    <Link to={item.link} >
+                                        <ListItem button>
+                                            <ListItemIcon>
+                                                {item.icon}
+                                            </ListItemIcon>
+                                            <ListItemText primary={<div>{item.name}</div>} />
+                                        </ListItem>
+                                    </Link>
                                 )
                             })
                         }

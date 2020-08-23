@@ -110,7 +110,7 @@ class MyListItem extends React.Component {
     }
 
     return (
-      <div class="animated fadeIn">
+      <div >
         <ButtonBase className="wrap" style={{flexDirection:"column"}} >
           <div class='item'>
             <Box boxShadow={3} style={{ paddingBottom: '10px', borderRadius: '5px' }} >

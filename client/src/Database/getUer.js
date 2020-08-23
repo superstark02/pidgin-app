@@ -9,6 +9,7 @@ export default function getUser() {
                 data.push(user.displayName);
                 data.push(user.photoURL);
                 data.push(user.email);
+                data.push(user.uid);
                 resolve(data)
             }
             else{

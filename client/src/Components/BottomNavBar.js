@@ -65,7 +65,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     position: "fixed",
     bottom: "0",
-    boxShadow:"0px 0px 5px rgba(0,0,0,0.3)"
+    boxShadow:"0px 0px 5px rgba(0,0,0,0.3)",
+    zIndex:"100"
   },
   icon:{
     margin: '0px'

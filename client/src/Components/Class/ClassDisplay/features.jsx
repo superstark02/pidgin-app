@@ -1,7 +1,13 @@
 import React from 'react'
 import ListSubheader from '@material-ui/core/ListSubheader';
-import {FaClock, FaGlobe, FaStopwatch, FaCalendar, FaFemale, FaUser, FaUsers} from 'react-icons/fa';
+import {FaFemale} from 'react-icons/fa';
 import trial from '../../../Images/trial.png'
+import AccessTimeRoundedIcon from '@material-ui/icons/AccessTimeRounded';
+import AccessAlarmsRoundedIcon from '@material-ui/icons/AccessAlarmsRounded';
+import EventRoundedIcon from '@material-ui/icons/EventRounded';
+import RssFeedRoundedIcon from '@material-ui/icons/RssFeedRounded';
+import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
+import PersonOutlinedIcon from '@material-ui/icons/PersonOutlined';
 
 var women, online,womenCell ,onlinecell;
 
@@ -10,7 +16,7 @@ export default class Features extends React.Component {
         women = this.props.women
         online = this.props.online
         if (online) {
-            onlinecell = <td><FaGlobe color='#353535' style={{ marginBottom: '-2px', marginRight: '5px' }} /> Online Available</td>
+            onlinecell = <td><RssFeedRoundedIcon color='#353535' style={{ marginBottom: '-2px', marginRight: '5px' }} /> Online Available</td>
         }
 
         if (women) {
@@ -24,16 +30,16 @@ export default class Features extends React.Component {
                         <ListSubheader style={{ fontSize: '12px', backgroundColor: 'white' }} >{`Features`}</ListSubheader>
                         <table className="feature-table" >
                             <tr>
-                                <td><FaClock className="feature-icon" /> 2:00 pm to 8:00 pm</td>
-                                <td><FaStopwatch className="feature-icon"/> 1hr/Class</td>
+                                <td><AccessTimeRoundedIcon className="feature-icon" /> 2:00 pm to 8:00 pm</td>
+                                <td><AccessAlarmsRoundedIcon className="feature-icon"/> 1hr/Class</td>
                             </tr>
                             <tr>
-                                <td><FaCalendar className="feature-icon"/> 3 clases/week </td>
+                                <td><EventRoundedIcon className="feature-icon"/> 3 clases/week </td>
                                 {onlinecell}
                             </tr>
                             <tr>
-                                <td><FaUser  className="feature-icon" /> Group Classes Availible</td>
-                                <td><FaUsers  className="feature-icon" /> Individual Classes Availible</td>
+                                <td><PersonAddOutlinedIcon  className="feature-icon" /> Group Classes Availible</td>
+                                <td><PersonOutlinedIcon  className="feature-icon" /> Individual Classes Availible</td>
                             </tr>
                             <tr>
                                 {womenCell}

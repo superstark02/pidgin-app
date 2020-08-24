@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import { db} from '../../firebase'
+import { db } from '../../firebase'
 import Skeleton from '@material-ui/lab/Skeleton';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -33,7 +33,7 @@ class ClassesDisplay extends React.Component {
     address: '',
     type: '',
     location: "",
-    courseLength:0,
+    courseLength: 0,
     loading: false,
   }
 
@@ -145,6 +145,9 @@ class ClassesDisplay extends React.Component {
 
     return (
       <div style={{ backgroundColor: 'white', position: 'absolute', zIndex: '300', maxWidth: '100%', width: '100%' }}>
+        <div class='overlayBlack' >
+          <div onClick={this.props.history.goBack}><ArrowBackIcon fontSize='10px' style={{ margin: '15px' }} /></div>
+        </div>
         <div class='overlayContainer'>
 
           <div class='carouselContainer' style={{ height: '250px' }} >
@@ -164,17 +167,13 @@ class ClassesDisplay extends React.Component {
               })
             }
           </div>
-
-          <div class='overlayBlack' >
-            <div onClick={this.props.history.goBack}><ArrowBackIcon fontSize='10px' style={{ margin: '15px' }} /></div>
-          </div>
         </div>
 
         <div>
           <div class='displayTitle'>
             {this.state.name}
             <div class='mapIcon'>
-              <a href={this.state.location} ><FaMapMarkerAlt color='#043540' /></a>
+              <a href={this.state.location} ><FaMapMarkerAlt color='#242429' /></a>
               <div style={{ fontSize: '10px' }} >Map</div>
             </div>
           </div>

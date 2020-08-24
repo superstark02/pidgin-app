@@ -24,6 +24,7 @@ export class Cart extends Component {
     }
 
     displayRazorpay = async () => {
+        const sendAmount = firebase.functions().httpsCallable('payment');
         const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
         if (!res) {
@@ -35,12 +36,10 @@ export class Cart extends Component {
             t.json()
         )
 
-        console.log(data)
-
         const options = {
             key: "rzp_test_YkaGnE7ZDrAhTW",
             currency: 'INR',
-            amount: 499 * 100,
+            amount: data.amount,
             order_id: data.id,
             name: 'Pidgin',
             description: '',
@@ -151,38 +150,3 @@ export class Cart extends Component {
 }
 
 export default Cart
-
-/*
-return (
-                        <div>
-                            {
-                                item.map(item => {
-                                    return (
-                                        <div className="cart-item" >
-                                            <div>
-                                                <img src={item.image} alt="s" width="100px" />
-                                            </div>
-                                            <div style={{ width: "200px", marginLeft: "5px" }} >
-                                                <div>
-                                                    {item.title}
-                                                </div>
-                                                <div className="class-button" style={{ width: "fit-content", color: "#f05f7f" }} onClick={() => { this.deleteItem(item.title) }} >
-                                                    - DELETE
-                                                </div>
-                                                <div style={{ fontSize: "12px", margin: "10px 0px" }} >
-                                                    <b>Mode:</b> {item.mode}
-                                                </div>
-                                                <div style={{ fontSize: "12px" }}>
-                                                    <b>Type:</b> {item.type}
-                                                </div>
-                                            </div>
-                                            <div>
-                                                &#8377;{item.price}
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    )
- */

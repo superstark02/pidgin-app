@@ -21,33 +21,9 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
     response.send("Hello from Firebase!");
 });
 
+var amount = []
 exports.payment = functions.https.onCall((data, context) => {
-
-    return new Promise((resolve, reject) => {
-        const payment_capture = 1
-        const amount = 499
-        const currency = 'INR'
-
-        const options = {
-            amount: amount * 100,
-            currency,
-            receipt: shortid.generate(),
-            payment_capture
-        }
-
-        try {
-            const response = razorpay.orders.create(options)
-            console.log(response)
-            resolve ({
-                id: response.id,
-                currency: response.currency,
-                amount: response.amount
-            })
-        } catch (error) {
-            console.log(error)
-        }
-
-    });
+    amount.push(data.amount)
 })
 
 
@@ -78,7 +54,7 @@ app.post('/verification', (req, res) => {
 
 app.post('/class', async (req, res) => {
 	const payment_capture = 1
-	const amount = 499
+	const amount = 499,
 	const currency = 'INR'
 
 	const options = {

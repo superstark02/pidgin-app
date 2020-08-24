@@ -151,7 +151,7 @@ class MyListItem extends React.Component {
 
                 <div class='map'>
                   <div>
-                    <div><a href={this.state.location}><FaMap size='15' color='#04BFBF' /></a></div>
+                    <div><a href={this.state.location}><FaMap size='15' color='rgba(0,0,0,0.2)' /></a></div>
                     <div>Map</div>
                   </div>
                 </div>

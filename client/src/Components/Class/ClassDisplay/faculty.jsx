@@ -6,9 +6,9 @@ export default class Faculty extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <li style={{ backgroundColor: '#04BF7B' }} >
+                <li style={{ backgroundColor: '#04BFBF' }} >
                     <ul style={{ padding: '10px' }} >
-                        <ListSubheader style={{ fontSize: '12px', backgroundColor: '#04BF7B' }} >{`About Faculty`}</ListSubheader>
+                        <ListSubheader style={{ fontSize: '12px', backgroundColor: '#04BFBF', color:"white"}} >{`About Faculty`}</ListSubheader>
                         {
                             this.props.qualifications &&
                             this.props.qualifications.map(qualifications => {

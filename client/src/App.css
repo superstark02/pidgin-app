@@ -9,6 +9,7 @@ body,html{
 	font-family: Defualt;
 	-webkit-tap-highlight-color:transparent;
 	font-size: 14px;
+	color: #242429;
 }
 input{
 	outline: none;
@@ -56,14 +57,13 @@ Link{
 }
 
 .overlayBlack{
-	position: absolute; 
-	top: 0; 
-	background-image: linear-gradient(to bottom,black, rgba(0,0,0,0));
+	background-color: white;
 	height: 50px; 
 	max-width: 100%;
 	width: 100%;
 	opacity:1;
-	color: white;
+	position: sticky;
+	top: 0;
 }
 
 .backIcon{
@@ -75,9 +75,9 @@ Link{
 .displayTitle{
 	margin: 10px 10px;
 	max-width: 100%;
-	font-weight: 600;
+	font-weight: 400;
 	align-self: center;
-	font-size: 16px;
+	font-size: 19px;
 	display: flex;
 }
 
@@ -87,7 +87,7 @@ Link{
 }
 
 .displayAge{
-	background-color: #58f73b;
+	background-color: #04BFBF;
 	padding: 5px;
     width: auto;
     color: white;
@@ -98,16 +98,16 @@ Link{
 	margin-top: 10px;
 }
 .displayType{
-	background-color: #f83b82;
     margin-left: 10px;
     padding: 5px;
     width: auto;
     white-space: nowrap;
-    color: white;
+    color: #04BFBF;
     font-size: 10px;
     border-radius: 3px;
 	font-weight: 400;
 	margin-bottom: 10px;
 	margin-top: 10px;
+	border: 0.5px solid #04BFBF;
 }
 

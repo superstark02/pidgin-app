@@ -6,9 +6,9 @@ export default class Eligibilty extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <li style={{ backgroundColor: '#04BF7B' }} >
+                <li style={{ backgroundColor: '#04BFBF' }} >
                     <ul style={{ padding: '10px' }} >
-                        <ListSubheader style={{ fontSize: '12px', backgroundColor: '#04BF7B' }} >{`Eligibility`}</ListSubheader>
+                        <ListSubheader style={{ fontSize: '12px', backgroundColor: '#04BFBF', color:"white" }} >{`Eligibility`}</ListSubheader>
                         {
                             this.props.eligibility &&
                             this.props.eligibility.map(eligibility => {

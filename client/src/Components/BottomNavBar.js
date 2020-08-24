@@ -12,7 +12,7 @@ const AntTabs = withStyles({
     height:'65px'
   },
   indicator: {
-    backgroundColor: '#043540',
+    backgroundColor: '#000000',
   },
 })(Tabs);
 
@@ -22,14 +22,14 @@ const AntTab = withStyles({
     minWidth: 72,
     fontFamily: "inherit",
     '&:hover': {
-      color: '#043540',
-      opacity: 1,
+      color: '#000000',
+      opacity: 0.4,
     },
     '&$selected': {
-      color: '#043540',
+      color: '#000000',
     },
     '&:focus': {
-      color: '#043540',
+      color: '#000000',
     },
     '&:focus': {
       opacity: 1,
@@ -44,7 +44,7 @@ const AntTab = withStyles({
     '& > span': {
       maxWidth: 40,
       width: '100%',
-      backgroundColor: '#635ee7',
+      backgroundColor: 'red',
     },
   },
   selected: {},

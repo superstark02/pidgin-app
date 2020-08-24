@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import getUser from '../../Database/getUer'
 import firebase, { rdb } from '../../firebase'
 import '../../CSS/Pages/Cart.css'
+import SimpleBottomNavigation from '../../Components/BottomNavBar'
 
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -86,6 +87,7 @@ export class Cart extends Component {
         if (this.state.cart) {
             return (
                 <div className="cart-page" >
+                    <SimpleBottomNavigation value="Cart" />
                     {
                         this.state.cart.map(item => {
                             return (

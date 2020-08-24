@@ -54,7 +54,7 @@ app.post('/verification', (req, res) => {
 
 app.post('/class', async (req, res) => {
 	const payment_capture = 1
-	const amount = 499,
+	const amount = 499
 	const currency = 'INR'
 
 	const options = {

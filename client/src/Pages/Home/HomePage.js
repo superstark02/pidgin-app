@@ -22,6 +22,7 @@ export class HomePage extends Component {
     render() {
         return (
             <div>
+                <SimpleBottomNavigation value="Home" />
                 <div style={{position:"absolute",top:"0",width:"100%",minHeight:"100vh"}} >
                 {
                     this.state.page === "Home" ? (

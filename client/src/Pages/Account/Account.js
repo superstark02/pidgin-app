@@ -13,6 +13,7 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import firebase, { db } from '../../firebase'
 import getUser from '../../Database/getUer';
 import { Link } from 'react-router-dom'
+import SimpleBottomNavigation from '../../Components/BottomNavBar';
 
 const general = [
     {
@@ -76,7 +77,7 @@ export class Account extends Component {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-            console.log(errorMessage,email,credential)
+            console.log(errorMessage, email, credential)
             db.collection("Errors").add(
                 {
                     email: email,
@@ -89,101 +90,103 @@ export class Account extends Component {
 
     render() {
         return (
-            <div style={{ padding: "10px" }} >
-
-                {
-                    this.state.user === -1 ? (
-                        <div className="acc-header" style={{ fontSize: "15px" }} >
-                            <p style={{ fontSize: "20px", marginBottom: "5px" }} >
-                                <b>Your Profile</b>
-                            </p>
-                                Log in or sign up to view your complete profile
-                            <Button
-                                variant="outlined"
-                                color="secondary"
-                                onClick={this.handleLogin}
-                                style={{ marginBottom: "30px", marginTop: "10px", width: "100%", textTransform: "none" }}
-                            >
-                                Sign In
-                            </Button>
-                            <div style={{ backgroundColor: "rgba(0,0,0,0.2)", height: '0.5px' }} ></div>
-                        </div>
-                    ) : this.state.user !== null ? (
-                        <div className="acc-header" style={{ fontSize: "15px", display: "flex", justifyContent: "space-between" }} >
-                            <div>
+            <div>
+                <div style={{ padding: "10px" }} >
+                    {
+                        this.state.user === -1 ? (
+                            <div className="acc-header" style={{ fontSize: "15px" }} >
                                 <p style={{ fontSize: "20px", marginBottom: "5px" }} >
-                                    <b>{this.state.user[0]}</b>
+                                    <b>Your Profile</b>
                                 </p>
-                                {this.state.user[2]}
+                                Log in or sign up to view your complete profile
+                                <Button
+                                    variant="outlined"
+                                    color="secondary"
+                                    onClick={this.handleLogin}
+                                    style={{ marginBottom: "30px", marginTop: "10px", width: "100%", textTransform: "none" }}
+                                >
+                                    Sign In
+                            </Button>
                                 <div style={{ backgroundColor: "rgba(0,0,0,0.2)", height: '0.5px' }} ></div>
                             </div>
-                            <div className="wrap" style={{ width: "auto" }} >
-                                <img src={this.state.user[1]} width="70px" height="70px" style={{ borderRadius: "50%" }} />
+                        ) : this.state.user !== null ? (
+                            <div className="acc-header" style={{ fontSize: "15px", display: "flex", justifyContent: "space-between" }} >
+                                <div>
+                                    <p style={{ fontSize: "20px", marginBottom: "5px" }} >
+                                        <b>{this.state.user[0]}</b>
+                                    </p>
+                                    {this.state.user[2]}
+                                    <div style={{ backgroundColor: "rgba(0,0,0,0.2)", height: '0.5px' }} ></div>
+                                </div>
+                                <div className="wrap" style={{ width: "auto" }} >
+                                    <img src={this.state.user[1]} width="70px" height="70px" style={{ borderRadius: "50%" }} />
+                                </div>
                             </div>
-                        </div>
-                    ) : (
-                                <div></div>
-                            )
-                }
-
-                <div>
-                    <div style={{ color: "rgba(0,0,0,0.4)", fontSize: '12px', textTransform: "uppercase", fontWeight: "700" }} >
-                        General
-                    </div>
-
-                    <List component="nav" aria-label="main mailbox folders">
-                        {
-                            general.map(item => {
-                                return (
-                                    <Link to={item.link} >
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                {item.icon}
-                                            </ListItemIcon>
-                                            <ListItemText primary={<div>{item.name}</div>} />
-                                        </ListItem>
-                                    </Link>
+                        ) : (
+                                    <div></div>
                                 )
-                            })
-                        }
-                    </List>
+                    }
+
+                    <div>
+                        <div style={{ color: "rgba(0,0,0,0.4)", fontSize: '12px', textTransform: "uppercase", fontWeight: "700" }} >
+                            General
+                    </div>
+
+                        <List component="nav" aria-label="main mailbox folders">
+                            {
+                                general.map(item => {
+                                    return (
+                                        <Link to={item.link} >
+                                            <ListItem button>
+                                                <ListItemIcon>
+                                                    {item.icon}
+                                                </ListItemIcon>
+                                                <ListItemText primary={<div>{item.name}</div>} />
+                                            </ListItem>
+                                        </Link>
+                                    )
+                                })
+                            }
+                        </List>
+                    </div>
+
+                    <div>
+                        <div style={{ color: "rgba(0,0,0,0.4)", fontSize: '12px', textTransform: "uppercase", fontWeight: "700" }} >
+                            Help
+                    </div>
+
+                        <List component="nav" aria-label="main mailbox folders">
+                            {
+                                help.map(item => {
+                                    return (
+                                        <Link to={item.link} >
+                                            <ListItem button>
+                                                <ListItemIcon>
+                                                    {item.icon}
+                                                </ListItemIcon>
+                                                <ListItemText primary={<div>{item.name}</div>} />
+                                            </ListItem>
+                                        </Link>
+                                    )
+                                })
+                            }
+                        </List>
+
+                    </div>
+                    <strong>
+                        <div className="account-options" onClick={this.handleLogout} >
+                            Logout
+                    </div>
+                        <div className="account-options" >
+                            Rate us on PlayStore
+                    </div>
+                        <div className="account-options" >
+                            Feedback
+                    </div>
+                    </strong>
+                    <div style={{ height: "100px" }} ></div>
                 </div>
-
-                <div>
-                    <div style={{ color: "rgba(0,0,0,0.4)", fontSize: '12px', textTransform: "uppercase", fontWeight: "700" }} >
-                        Help
-                    </div>
-
-                    <List component="nav" aria-label="main mailbox folders">
-                        {
-                            help.map(item => {
-                                return (
-                                    <Link to={item.link} >
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                {item.icon}
-                                            </ListItemIcon>
-                                            <ListItemText primary={<div>{item.name}</div>} />
-                                        </ListItem>
-                                    </Link>
-                                )
-                            })
-                        }
-                    </List>
-
-                </div>
-                <strong>
-                    <div className="account-options" onClick={this.handleLogout} >
-                        Logout
-                    </div>
-                    <div className="account-options" >
-                        Rate us on PlayStore
-                    </div>
-                    <div className="account-options" >
-                        Feedback
-                    </div>
-                </strong>
-                <div style={{ height: "100px" }} ></div>
+                <SimpleBottomNavigation value="Account" />
             </div>
         )
     }

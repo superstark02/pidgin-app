@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import getCollection from '../../Database/getCollection'
 import MyListItem from '../../Components/Home/ListItem'
+import SimpleBottomNavigation from '../../Components/BottomNavBar'
 
 export class SearchPage extends Component {
 
@@ -35,6 +36,7 @@ export class SearchPage extends Component {
 
         return (
             <div>
+                <SimpleBottomNavigation value="Search" />
                 <div className="wrap" style={{position:"sticky",top:"0", zIndex:"10000",backgroundColor:"white"}} >
                     <input placeholder="Search classes, courses.." className="home-search-box" onChange={this.updateSearch.bind(this)}  ></input>
                 </div>

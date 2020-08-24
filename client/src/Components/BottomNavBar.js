@@ -6,10 +6,13 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import SearchIcon from '@material-ui/icons/Search';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { Link } from 'react-router-dom'
 
 const AntTabs = withStyles({
   root: {
-    height:'65px'
+    height:'65px',
+    justifyContent:"space-evenly",
+    display:"flex"
   },
   indicator: {
     backgroundColor: '#000000',
@@ -78,17 +81,16 @@ export default function SimpleBottomNavigation(props) {
   const [value, setValue] = React.useState("Home");
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    props.changePage(newValue)
+    setValue(props.value);
   };
 
   return (
     <div className={classes.root}>
-      <AntTabs value={value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
-        <AntTab icon={<HomeOutlinedIcon className={classes.icon} />} label="Home" value="Home" />
-        <AntTab icon={<SearchIcon/>} label="Search" className={classes.icon} value="Search" />
-        <AntTab icon={<ShoppingCartOutlinedIcon/>} label="Cart" className={classes.icon} value="Cart" />
-        <AntTab icon={<AccountCircleOutlinedIcon/>} label="Account" className={classes.icon} value="Account" />
+      <AntTabs value={props.value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
+        <AntTab icon={<Link to="/class" ><HomeOutlinedIcon className={classes.icon} /></Link>} label="Home" value="Home" />
+        <AntTab icon={<Link to="/search" ><SearchIcon/></Link>} label="Search" className={classes.icon} value="Search" />
+        <AntTab icon={<Link to="/cart" ><ShoppingCartOutlinedIcon/></Link>} label="Cart" className={classes.icon} value="Cart" />
+        <AntTab icon={<Link to="/account" ><AccountCircleOutlinedIcon/></Link>} label="Account" className={classes.icon} value="Account" />
       </AntTabs>
     </div>
   );

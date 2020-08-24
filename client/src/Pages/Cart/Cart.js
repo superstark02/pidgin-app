@@ -4,17 +4,17 @@ import firebase, { rdb } from '../../firebase'
 import '../../CSS/Pages/Cart.css'
 
 function loadScript(src) {
-	return new Promise((resolve) => {
-		const script = document.createElement('script')
-		script.src = src
-		script.onload = () => {
-			resolve(true)
-		}
-		script.onerror = () => {
-			resolve(false)
-		}
-		document.body.appendChild(script)
-	})
+    return new Promise((resolve) => {
+        const script = document.createElement('script')
+        script.src = src
+        script.onload = () => {
+            resolve(true)
+        }
+        script.onerror = () => {
+            resolve(false)
+        }
+        document.body.appendChild(script)
+    })
 }
 
 export class Cart extends Component {
@@ -24,46 +24,46 @@ export class Cart extends Component {
     }
 
     displayRazorpay = async () => {
-		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+        const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
-		if (!res) {
-			alert('Razorpay SDK failed to load. Are you online?')
-			return
-		}
+        if (!res) {
+            alert('Razorpay SDK failed to load. Are you online?')
+            return
+        }
 
-		const data = await fetch('http://localhost:4000/pidgin/cart', { method: 'POST' }).then((t) =>
-			t.json()
-		)
+        const data = await fetch('https://us-central1-pidgin-ds.cloudfunctions.net/payment', { method: 'POST' }).then((t) =>
+            t.json()
+        )
 
-		console.log(data)
+        console.log(data)
 
-		const options = {
-			key: "rzp_test_YkaGnE7ZDrAhTW",
-			currency: data.currency,
-			amount: this.state.total_amount*100,
-			order_id: data.id,
-			name: 'Pidgin',
-			description: '',
-			handler: function (response) {
-				alert(response.razorpay_payment_id)
-				alert(response.razorpay_order_id)
-				alert(response.razorpay_signature)
-			},
-			prefill: {
-				name: this.state.user.displayName,
-				email: this.state.user.email,
-				phone_number: ''
-			}
-		}
-		const paymentObject = new window.Razorpay(options)
-		paymentObject.open()
-	}
+        const options = {
+            key: "rzp_test_YkaGnE7ZDrAhTW",
+            currency: 'INR',
+            amount: 499 * 100,
+            order_id: data.id,
+            name: 'Pidgin',
+            description: '',
+            handler: function (response) {
+                alert(response.razorpay_payment_id)
+                alert(response.razorpay_order_id)
+                alert(response.razorpay_signature)
+            },
+            prefill: {
+                name: "this.state.user.displayName",
+                email: "this.state.user.email",
+                phone_number: ''
+            }
+        }
+        const paymentObject = new window.Razorpay(options)
+        paymentObject.open()
+    }
 
     componentDidMount() {
         getUser().then(user => {
             if (user) {
                 rdb.ref().child("carts").child(user[3]).on('value', snap => {
-                    this.setState({user:user})
+                    this.setState({ user: user })
                     var item = []
                     snap.forEach(doc => {
                         item.push(doc.val())
@@ -139,6 +139,11 @@ export class Cart extends Component {
                 <div>FIND A BETTER TEACHER FOR BETTER LIFE</div>
                 <div style={{ fontSize: "12px" }} >
                     No items in cart
+                </div>
+                <div className="wrap" >
+                    <button className="pay-button" onClick={this.displayRazorpay} >
+                        CHECKOUT
+                    </button>
                 </div>
             </div>
         )

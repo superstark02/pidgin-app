@@ -67,7 +67,7 @@ export class Account extends Component {
 
     handleLogin = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithRedirect(provider).then(user => {
+        firebase.auth().signInWithCredential(provider).then(user => {
             this.setState({ user: user.user.displayName })
         }).catch(function (error) {
             // Handle Errors here.
@@ -77,10 +77,10 @@ export class Account extends Component {
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
             console.log(errorMessage,email,credential)
-            db.collection("LoginErrors").add(
+            db.collection("Errors").add(
                 {
-                    errorMessage: errorMessage,
                     email: email,
+                    error: errorMessage,
                     credential: credential
                 }
             )

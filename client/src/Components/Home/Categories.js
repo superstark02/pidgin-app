@@ -23,7 +23,7 @@ export class Categories extends Component {
                     <div className="home-heading">
                         Top By Categories
                     </div>
-                    <div className="wrap" style={{flexWrap:"wrap"}}  >
+                    <div className="wrap" style={{ flexWrap: "wrap" }}  >
                         <div class='home-categories-box'> <Skeleton animation="wave" height={100} variant="rect" width={100} /> </div>
                         <div class='home-categories-box'> <Skeleton animation="wave" height={100} variant="rect" width={100} /> </div>
                         <div class='home-categories-box'> <Skeleton animation="wave" height={100} variant="rect" width={100} /> </div>
@@ -41,20 +41,22 @@ export class Categories extends Component {
                     <div className="home-heading">
                         Top By Categories
                     </div>
-                    <div className="wrap" style={{flexWrap:"wrap"}} >
-                        {
-                            this.state.images&&
-                            this.state.images.map(item=>{
-                                return (
-                                    <div class='home-categories-box' >
-                                        <div className="categories-label" >
-                                            {item.type}
+                    <div className="wrap">
+                        <div style={{ flexWrap: "wrap", justifyContent: "flex-start",display:'flex',width:'84vw' }} >
+                            {
+                                this.state.images &&
+                                this.state.images.map(item => {
+                                    return (
+                                        <div class='home-categories-box' >
+                                            <div className="categories-label" >
+                                                {item.type}
+                                            </div>
+                                            <img src={item.image} className="home-categories-image"  ></img>
                                         </div>
-                                        <img src={item.image} className="home-categories-image"  ></img>
-                                    </div>
-                                )
-                            })
-                        }
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

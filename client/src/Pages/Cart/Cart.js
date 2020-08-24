@@ -72,6 +72,11 @@ export class Cart extends Component {
                             &#8377;600
                         </div>
                     </div>
+
+                    <div>
+                        
+                    </div>
+                    
                 </div>
             )
         }

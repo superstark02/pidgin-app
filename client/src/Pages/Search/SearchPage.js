@@ -35,9 +35,14 @@ export class SearchPage extends Component {
 
         return (
             <div>
-                <div className="wrap" style={{position:"sticky",top:"0", zIndex:"1",backgroundColor:"white"}} >
+                <div className="wrap" style={{position:"sticky",top:"0", zIndex:"10000",backgroundColor:"white"}} >
                     <input placeholder="Search classes, courses.." className="home-search-box" onChange={this.updateSearch.bind(this)}  ></input>
                 </div>
+
+                <div>
+                    
+                </div>
+
                 <div>
                     {
                         filteredClass&&

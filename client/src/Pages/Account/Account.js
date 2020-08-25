@@ -181,8 +181,10 @@ export class Account extends Component {
                             Rate us on PlayStore
                     </div>
                         <div className="account-options" >
-                            Feedback
-                    </div>
+                            <Link to='/pidgin/feedback' >
+                                Feedback
+                            </Link>
+                        </div>
                     </strong>
                     <div style={{ height: "100px" }} ></div>
                 </div>

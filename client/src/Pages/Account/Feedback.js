@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import AppBar from '../../Components/AppBar'
 import emailjs from 'emailjs-com';
-import '../../CSS/Pages/Home.css'
-import '../../CSS/Pages/Help.css'
+import '../../CSS/Pages/Feedback.css'
 
-export class Help extends Component {
+export class Feedback extends Component {
 
     sendMail = (e) => {
         e.preventDefault();
@@ -20,16 +19,16 @@ export class Help extends Component {
     render() {
         return (
             <div>
-                <AppBar name="Help" goBack={this.props.history.goBack} />
+                <AppBar name="Feedback" goBack={this.props.history.goBack} />
                 <div>
                     <div className="contact-wallpaper-overlay wrap" >
                         <div>
                             <div className="future-of-learning" >
-                                We Would Love To Here From You
+                                Feedback
                             </div>
                         </div>
                     </div>
-                    <div className="contact-wallpaper" ></div>
+                    <div className="feedback-wallpaper" ></div>
 
                     <div className="wrap" style={{ margin: "40px 0px" }} >
                         <div className="home-width-container" >
@@ -37,14 +36,11 @@ export class Help extends Component {
                             <div className="about-content" >
                                 <div className="about-content-display" >
                                     <div className="about-text" >
-                                        <h1 style={{ fontSize: "40px", marginBottom: "40px" }} >
-                                            We are available 24/7
-                                        </h1>
                                         <form onSubmit={this.sendMail} style={{ display: "flex", flexDirection: "column" }} >
                                             <input className="standard-input" name="name" placeholder="Name" required />
                                             <input className="standard-input" name="email" placeholder="Email" />
                                             <input className="standard-input" name="phone" placeholder="Phone" />
-                                            <textarea style={{ minHeight: "100px" }} type="multiline" className="standard-input" name="message" placeholder="Message" required />
+                                            <textarea style={{ minHeight: "100px" }} type="multiline" className="standard-input" name="feedback" placeholder="Feedback" required />
                                             <input className="standard-button" type="submit" value="SUBMIT" />
                                         </form>
                                     </div>
@@ -60,4 +56,4 @@ export class Help extends Component {
     }
 }
 
-export default Help
+export default Feedback

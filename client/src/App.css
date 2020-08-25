@@ -111,3 +111,17 @@ Link{
 	border: 0.5px solid #04BFBF;
 }
 
+.standard-input{
+	margin: 10px 2px;
+	padding: 5px;
+	outline: none;
+	width: 90%;
+  }
+  
+  .standard-button{
+	color: white;
+	background-color: #00b6c7;
+	padding: 10px;
+	border: none;
+	outline: none;
+  }

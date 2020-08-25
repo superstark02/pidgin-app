@@ -11,6 +11,7 @@ import About from './Pages/Account/About';
 import Help from './Pages/Account/Help';
 import ListYourClasses from './Pages/Account/ListYourClasses';
 import YourPayments from './Pages/Account/YourPayments';
+import Feedback from './Pages/Account/Feedback';
 import Account from './Pages/Account/Account';
 
 class App extends React.Component{
@@ -24,6 +25,7 @@ class App extends React.Component{
           <Route exact path='/class' component={HomePage} ></Route>
           <Route exact path='/search' component={SearchPage} ></Route>
           <Route exact path='/account' component={Account} ></Route>
+          <Route exact path='/pidgin/feedback' component={Feedback} ></Route>
           <Route exact path='/your-classes' component={YourClasses} ></Route>
           <Route exact path='/about' component={About} ></Route>
           <Route exact path='/help' component={Help} ></Route>

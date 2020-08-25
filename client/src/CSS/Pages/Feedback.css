@@ -1,0 +1,6 @@
+.feedback-wallpaper{
+    background-image: url(../../Images/Feedback/feedback.jpg);
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+}

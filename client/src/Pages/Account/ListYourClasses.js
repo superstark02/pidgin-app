@@ -5,7 +5,10 @@ export class ListYourClasses extends Component {
     render() {
         return (
             <div>
-                <AppBar name="List Your Classes" />
+                <AppBar name="List Your Classes" goBack={this.props.history.goBack} />
+                <form>
+                    <input placeholder="Name" />
+                </form>
             </div>
         )
     }

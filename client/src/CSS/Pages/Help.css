@@ -1,0 +1,14 @@
+.contact-wallpaper{
+    background-image: url(../../Images/Contact-us/contact-us.jpg);
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+}
+.contact-wallpaper-overlay{
+    position: absolute;
+    height: 50vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    flex-direction: column;
+    color: white;
+}

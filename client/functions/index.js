@@ -1,6 +1,5 @@
 const functions = require('firebase-functions');
 const app = require('express')()
-const path = require('path')
 const shortid = require('shortid')
 const Razorpay = require('razorpay')
 const cors = require('cors')
@@ -52,7 +51,7 @@ app.post('/verification', (req, res) => {
 	res.json({ status: 'ok' })
 })
 
-app.post('/class', async (req, res) => {
+app.post('/cart', async (req, res) => {
 	const payment_capture = 1
 	const amount = 499
 	const currency = 'INR'

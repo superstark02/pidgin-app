@@ -114,12 +114,7 @@ class MyListItem extends React.Component {
         <ButtonBase className="wrap" style={{flexDirection:"column"}} >
           <div class='item'>
             <Box boxShadow={3} style={{ paddingBottom: '10px', borderRadius: '5px' }} >
-              <Link to={{
-                pathname: '/classDisplay',
-                state: {
-                  classId: this.state.id
-                }
-              }} >
+              <Link to={"/class-display/"+this.state.id} >
                 <div class='showImage'>
                   {this.state.i1 ? (
                     <div class='alternateImg' >
@@ -158,7 +153,7 @@ class MyListItem extends React.Component {
 
               </div>
 
-              <Link to={"/classDisplay/"+this.state.id}>
+              <Link  to={"/class-display/"+this.state.id}>
                 <div class='type' style={{fontFamily:"Thin"}} >
                   {this.state.adress}
                 </div>

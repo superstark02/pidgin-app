@@ -5,7 +5,7 @@ export class Help extends Component {
     render() {
         return (
             <div>
-                <AppBar name="Help" />
+                <AppBar name="Help" goBack={this.props.history.goBack} />
             </div>
         )
     }

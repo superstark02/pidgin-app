@@ -40,7 +40,7 @@ export class Cart extends Component {
         const options = {
             key: "rzp_test_YkaGnE7ZDrAhTW",
             currency: 'INR',
-            amount: data.amount,
+            amount: 499*100,
             order_id: data.id,
             name: 'Pidgin',
             description: '',
@@ -141,11 +141,7 @@ export class Cart extends Component {
                 <div style={{ fontSize: "12px" }} >
                     No items in cart
                 </div>
-                <div className="wrap" >
-                    <button className="pay-button" onClick={this.displayRazorpay} >
-                        CHECKOUT
-                    </button>
-                </div>
+                <SimpleBottomNavigation value="Cart" />
             </div>
         )
     }

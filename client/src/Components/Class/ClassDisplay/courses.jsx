@@ -12,17 +12,29 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Dialog from '@material-ui/core/Dialog';
 
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 class Courses extends React.Component {
     state = {
         courses: null,
         cart_dialog: null,
-        cart_item:null,
-        mode:null,
-        type:null
+        cart_item: null,
+        mode: null,
+        type: null,
+        open_snackbar:false,
     }
 
     componentDidMount() {
         this.setState({ courses: this.props.courses })
+    }
+
+    handleCloseSnackbar = () => {
+        this.setState({open_snackbar:false})
     }
 
     addToCart = (item) => {
@@ -61,6 +73,7 @@ class Courses extends React.Component {
             }
         })
         this.handleClose()
+        this.setState({open_snackbar:true})
     }
 
     handleClose = () => {
@@ -98,7 +111,7 @@ class Courses extends React.Component {
                                                 </div>
                                             </Link>
                                             <div style={{ alignContent: 'center', marginLeft: 'auto', paddingRight: '10px', right: '0', position: 'absolute' }} >
-                                                <div className="chip" onClick={()=>{this.openCart(course)}} >
+                                                <div className="chip" onClick={() => { this.openCart(course) }} >
                                                     ADD
                                                 </div>
                                             </div>
@@ -165,6 +178,11 @@ class Courses extends React.Component {
                         </div>
                         </div>
                     </Dialog>
+                    <Snackbar open={this.state.open_snackbar} autoHideDuration={6000} onClose={this.handleCloseSnackbar}>
+                        <Alert onClose={this.handleCloseSnackbar} severity="success">
+                            Added To Cart!
+                        </Alert>
+                    </Snackbar>
                 </li>
             </React.Fragment>
         )

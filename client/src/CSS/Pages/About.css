@@ -1,0 +1,57 @@
+.about-wallpaper{
+    background-image: url(../../Images/About/about-wallpaper.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+.about-wallpaper-overlay{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    flex-direction: column;
+    color: white;
+}
+.future-of-learning{
+    font-size: 30px;
+}
+.about-content{
+    margin: 70px 0px;
+}
+.about-content-display{
+    display: flex;
+}
+.about-text{
+    padding: 10px 30px;
+    font-size: 20px;
+}
+.about-map{
+    border-radius: 30px;
+    width: 500px;
+}
+.about-card{
+    width: 20%;
+    font-size: 15px;
+    margin: 10px;
+}
+
+@media only screen and (max-width:1024px) {
+    .about-content-display{
+        flex-direction: column;
+    }
+    .about-map{
+        width: 100%;
+    }
+    .help-teachers{
+        flex-direction: column;
+    }
+    .about-card{
+        width: 100%;
+    }
+    .future-of-learning{
+        padding: 10px;
+    }
+    .about-text{
+        padding: 5px 10px;
+    }
+}

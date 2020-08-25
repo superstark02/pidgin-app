@@ -13,3 +13,93 @@
     font-size: 16px;
     font-weight: 700;
 }
+
+body,div{
+    font-family: Defualt;
+}
+
+.home-overlay{
+    height: 80vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.home-search-input{
+    background-color: rgb(231, 230, 230);
+    margin: 20px 0px;
+    width: 500px;
+    outline: none;
+    border: none;
+    padding: 20px;
+}
+.home-top-card{
+    height: 200px;
+    width: 200px;
+    border: 1px rgb(196, 195, 195) solid;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.home-top-card-image{
+    height: 160px;
+    width: 200px;
+    overflow: hidden;
+    background-size: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+.delivering-education{
+    font-size: 40px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    font-family: Defualt;
+}
+.home-width-container{
+    width: 70%;
+}
+.wrap-responsive{
+    flex-wrap: wrap;
+}
+
+.home-blogs-workshops{
+    width:50%;
+}
+
+.home-blogs-workshops-image, .home-blogs-workshops-heading-image{
+    width: 80%;
+    border-radius: 10px;
+    margin: 10px 0px;
+    cursor: pointer;
+}
+
+.home-blogs-workshops-heading-image{
+    width: 50%;
+}
+
+@media only screen and (max-width:1024px) {
+    .delivering-education{
+        font-size: 20px;
+    }
+    .home-search-input{
+        width: 70vw;
+    }
+    .home-top-card{
+        width: 80vw;
+        margin:  10px 0px;
+    }
+    .home-top-card-image{
+        width: 80vw;
+    }
+    .home-width-container{
+        width: 90%;
+    }
+    .wrap-responsive{
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+    .home-blogs-workshops{
+        width: 100%;
+    }
+    .home-blogs-workshops-heading-image{
+        width: 100%;
+    }
+}

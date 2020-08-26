@@ -26,10 +26,13 @@ class ClassList extends React.Component{
 
     position = async () => {
       await navigator.geolocation.getCurrentPosition(
-        position => this.setState({ 
-          latitude: position.coords.latitude, 
-          longitude: position.coords.longitude
-        }), 
+        position => {
+          this.setState({ 
+            latitude: position.coords.latitude, 
+            longitude: position.coords.longitude,
+          });
+          console.log(position.coords.latitude,position.coords.longitude)
+        }, 
         err => console.log(err)
       );
     }

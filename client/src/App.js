@@ -13,6 +13,7 @@ import ListYourClasses from './Pages/Account/ListYourClasses';
 import YourPayments from './Pages/Account/YourPayments';
 import Feedback from './Pages/Account/Feedback';
 import Account from './Pages/Account/Account';
+import School from './Pages/Schools/School';
 
 class App extends React.Component{
 
@@ -31,6 +32,7 @@ class App extends React.Component{
           <Route exact path='/help' component={Help} ></Route>
           <Route exact path='/list-your-classes' component={ListYourClasses} ></Route>
           <Route exact path='/your-payments' component={YourPayments} ></Route>
+          <Route exact path='/schools' component={School} ></Route>
         </Switch>
       </Router>
     )

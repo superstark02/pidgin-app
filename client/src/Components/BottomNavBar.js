@@ -88,7 +88,7 @@ export default function SimpleBottomNavigation(props) {
     <div className={classes.root}>
       <AntTabs value={props.value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
         <AntTab icon={<Link to="/class" ><HomeOutlinedIcon className={classes.icon} /></Link>} label="Home" value="Home" />
-        <AntTab icon={<Link to="/search" ><SearchIcon/></Link>} label="Search" className={classes.icon} value="Search" />
+        <AntTab icon={<Link to="/schools" ><SearchIcon/></Link>} label="Schools" className={classes.icon} value="Schools" />
         <AntTab icon={<Link to="/cart" ><ShoppingCartOutlinedIcon/></Link>} label="Cart" className={classes.icon} value="Cart" />
         <AntTab icon={<Link to="/account" ><AccountCircleOutlinedIcon/></Link>} label="Account" className={classes.icon} value="Account" />
       </AntTabs>

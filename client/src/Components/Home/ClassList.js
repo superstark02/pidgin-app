@@ -98,6 +98,7 @@ class ClassList extends React.Component{
                       })
                     }  
               </div>
+              <div style={{height:"75px"}} ></div>
         </div>
       )
       }

@@ -14,6 +14,8 @@ import YourPayments from './Pages/Account/YourPayments';
 import Feedback from './Pages/Account/Feedback';
 import Account from './Pages/Account/Account';
 import School from './Pages/Schools/School';
+import SchoolDisplay from './Components/Schools/SchoolDisplay';
+import CommonForms from './Pages/Schools/CommonForms';
 
 class App extends React.Component{
 
@@ -22,7 +24,6 @@ class App extends React.Component{
       <Router history={history}>
         <Switch>
           <Route exact path='/cart' component={Cart} ></Route>
-          <Route exact path='/class-display/:id' component={ClassesDisplay} ></Route>
           <Route exact path='/class' component={HomePage} ></Route>
           <Route exact path='/search' component={SearchPage} ></Route>
           <Route exact path='/account' component={Account} ></Route>
@@ -33,6 +34,9 @@ class App extends React.Component{
           <Route exact path='/list-your-classes' component={ListYourClasses} ></Route>
           <Route exact path='/your-payments' component={YourPayments} ></Route>
           <Route exact path='/schools' component={School} ></Route>
+          <Route exact path='/common-forms' component={CommonForms} ></Route>
+          <Route exact path='/class-display/:id' component={ClassesDisplay} ></Route>
+          <Route exact path='/school-display/:id' component={SchoolDisplay} ></Route>
         </Switch>
       </Router>
     )

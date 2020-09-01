@@ -5,6 +5,8 @@ import { FaMap } from 'react-icons/fa'
 import ButtonBase from '@material-ui/core/ButtonBase/ButtonBase';
 import Box from '@material-ui/core/Box';
 import SimpleBottomNavigation from '../BottomNavBar';
+import '../../CSS/Components/Home/ClassList.css'
+import '../../CSS/Components/Schools/Schools.css'
 
 export class SchoolList extends Component {
 
@@ -30,8 +32,13 @@ export class SchoolList extends Component {
                                 <ButtonBase className="wrap" style={{ flexDirection: "column" }} >
                                     <div class='item'>
                                         <Box boxShadow={3} style={{ paddingBottom: '10px', borderRadius: '5px' }} >
-                                            <Link to={"/school-display/" + item.id} >
-                                                <div class='showImage wrap'>
+                                            <Link to = {{
+                                                pathname:"/school-display/" + item.id,
+                                                state:{
+                                                    data:item
+                                                }
+                                            }} >
+                                                <div class='school-logo wrap'>
                                                     <img height="90%" src={item.logo} />
                                                 </div>
                                             </Link>
@@ -51,7 +58,7 @@ export class SchoolList extends Component {
                                             </div>
 
                                             <Link to={"/school-display/" + this.state.id}>
-                                                <div class='type' style={{ fontFamily: "Thin" }} >
+                                                <div class='type' style={{ fontFamily: "Thin",textAlign:"left" }} >
                                                     {item.address}
                                                 </div>
                                             </Link>

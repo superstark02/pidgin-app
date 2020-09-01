@@ -1,0 +1,13 @@
+.school-procedure{
+    width: 93%;
+    overflow-x: scroll;
+    display: flex;
+    background-color: white;
+    margin: 10px 0px;
+}
+.procedure-image{
+    width: 50vw;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: white;
+}

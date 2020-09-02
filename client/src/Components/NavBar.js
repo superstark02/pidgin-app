@@ -25,6 +25,11 @@ HideOnScroll.propTypes = {
 };
 
 export default function MyAppBar(props) {
+
+  React.useEffect(() => {
+    
+  });
+
   return (
     <React.Fragment>
       <CssBaseline />

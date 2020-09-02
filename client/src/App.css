@@ -74,6 +74,7 @@ Link{
 
 .displayTitle{
 	margin: 10px 10px;
+	width: 100%;
 	max-width: 100%;
 	font-weight: 400;
 	align-self: center;

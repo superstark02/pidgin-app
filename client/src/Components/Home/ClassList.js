@@ -31,7 +31,6 @@ class ClassList extends React.Component{
             latitude: position.coords.latitude, 
             longitude: position.coords.longitude,
           });
-          console.log(position.coords.latitude,position.coords.longitude)
         }, 
         err => console.log(err)
       );

@@ -32,10 +32,10 @@ export class SchoolList extends Component {
                                 <ButtonBase className="wrap" style={{ flexDirection: "column" }} >
                                     <div class='item'>
                                         <Box boxShadow={3} style={{ paddingBottom: '10px', borderRadius: '5px' }} >
-                                            <Link to = {{
-                                                pathname:"/school-display/" + item.id,
-                                                state:{
-                                                    data:item
+                                            <Link to={{
+                                                pathname: "/school-display/" + item.id,
+                                                state: {
+                                                    data: item
                                                 }
                                             }} >
                                                 <div class='school-logo wrap'>
@@ -44,7 +44,12 @@ export class SchoolList extends Component {
                                             </Link>
                                             <div class='container'>
 
-                                                <Link to={"/school-display/" + item.id}>
+                                                <Link to={{
+                                                    pathname: "/school-display/" + item.id,
+                                                    state: {
+                                                        data: item
+                                                    }
+                                                }} >
                                                     <div class='name'>{item.name}</div>
                                                 </Link>
 
@@ -57,8 +62,13 @@ export class SchoolList extends Component {
 
                                             </div>
 
-                                            <Link to={"/school-display/" + this.state.id}>
-                                                <div class='type' style={{ fontFamily: "Thin",textAlign:"left" }} >
+                                            <Link to={{
+                                                pathname: "/school-display/" + item.id,
+                                                state: {
+                                                    data: item
+                                                }
+                                            }} >
+                                                <div class='type' style={{ fontFamily: "Thin", textAlign: "left" }} >
                                                     {item.address}
                                                 </div>
                                             </Link>
@@ -69,7 +79,7 @@ export class SchoolList extends Component {
                         )
                     })
                 }
-                <div style={{height:"70px"}} />
+                <div style={{ height: "70px" }} />
             </div>
         )
     }

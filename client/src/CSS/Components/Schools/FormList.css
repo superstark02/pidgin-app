@@ -1,0 +1,11 @@
+.form-item{
+    background-color: #2db3b2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 10px 0px;
+}
+.form-title{
+    font-size: 20px;
+}

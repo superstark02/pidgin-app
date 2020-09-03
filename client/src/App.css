@@ -36,6 +36,10 @@ Link{
 		color: black;
 }
 
+button{
+	outline: none;
+}
+
 .wrap{
 	display: flex;
 	justify-content: center;

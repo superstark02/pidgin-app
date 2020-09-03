@@ -9,3 +9,12 @@
     font-size: 10px;
     color: #B1C0DD;
 }
+
+.school-footer{
+    color: grey;
+    font-size: 9px;
+    text-align: center;
+    padding: 5vh 10px;
+    width: 93%;
+}
+

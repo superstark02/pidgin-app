@@ -12,6 +12,55 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import { Link } from 'react-router-dom'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FaStoreAlt, FaSwimmingPool, FaSnowflake, FaRobot, FaSkating } from 'react-icons/fa';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import TableRow from '@material-ui/core/TableRow';
+
+
+const StyledTableCell = withStyles((theme) => ({
+    body: {
+        fontSize: "inherit",
+        color: "white",
+        padding: "6px 10px",
+        fontFamily: "inherit"
+    },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: "#0abf8c80",
+        },
+        '&:nth-of-type(even)': {
+            backgroundColor: "#0ABF8C",
+        },
+    },
+}))(TableRow);
+
+const StyledTableRowPoints = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: "#85dbdb",
+        },
+        '&:nth-of-type(even)': {
+            backgroundColor: "#04BFBF",
+        },
+    },
+}))(TableRow);
+
+const StyledTableRowFees = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: "#f2b7057c",
+        },
+        '&:nth-of-type(even)': {
+            backgroundColor: "#f2b705",
+        },
+    },
+}))(TableRow);
+
 
 function a11yProps(index) {
     return {
@@ -26,6 +75,7 @@ export class SchoolDisplay extends Component {
         school_data: null,
         value: 0,
         school_images: null,
+        school_admissions: null,
     }
 
     componentDidMount() {
@@ -33,8 +83,8 @@ export class SchoolDisplay extends Component {
             this.setState({ school_images: items })
         })
 
-        getSubCollection("Schools", this.props.location.state.data.id, "Images").then(items => {
-            this.setState({ school_images: items })
+        getSubCollection("Schools", this.props.location.state.data.id, "Admissions").then(items => {
+            this.setState({ school_admissions: items })
         })
     }
 
@@ -58,6 +108,10 @@ export class SchoolDisplay extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div className="wrap" >
+                    <button className="standard-button" style={{ fontFamily: "Thin", padding: "6px 10px", width: "93%" }} >Select This School</button>
                 </div>
 
                 <div className="wrap" style={{ position: "sticky", top: "50px", backgroundColor: "white", zIndex: "10000" }} >
@@ -149,6 +203,53 @@ export class SchoolDisplay extends Component {
                     </div>
 
                     <div style={{ width: "93%" }} >
+                        <Accordion elevation={0} >
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                            >
+                                <strong>Vision</strong>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <div style={{ fontFamily: "Thin" }} >
+                                    To strive for better and better, not resting on one’s laurels; seek solutions
+                                    not excuses, deliver results and serve the community by providing quality
+                                    education.
+                                 </div>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        <Accordion elevation={0} >
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                            >
+                                <strong>Mission</strong>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <div style={{ fontFamily: "Thin" }} >
+                                    *To develop scholastic personalities and impart knowledge to maximise
+                                    skills and competencies.
+                                    *To impart wisdom that transforms mere knowledge into meaningful
+                                    initiative and enterprise for a harmonious and prosperous society.
+                                    *To provide holistic education to society as a whole without prejudice or
+                                    discrimination.
+                                    *To Equip the child to meet all challenges –social, moral and intellectual
+                                    and comprehend human values.
+                                    *To make students responsible, law abiding and enlightened citizens of
+                                    global society.
+                                    *To Instil traits of team work, empathy, patience, perseverance and
+                                    respect of elders and mentors.
+                                    *To ensure sensitivity and commitment to environment and all beings to
+                                    save the planet for future generation
+                                 </div>
+                            </AccordionDetails>
+                        </Accordion>
+                    </div>
+
+                    <div style={{ width: "93%", margin: "10px 0px" }} >
                         <div>
                             <strong>Admissions</strong>
                         </div>
@@ -156,46 +257,33 @@ export class SchoolDisplay extends Component {
                             Amissions are open for:
                         </div>
                         <div>
-                            <table style={{ tableLayout: "fixed", width: "100%" }} >
-                                <tr>
-                                    <td className="column-heading" >
-                                        Nursey
-                                    </td>
-                                    <td className="column-data" >
-                                        100 seats
-                                    </td>
-                                </tr>
-                            </table>
+                            <Table aria-label="customized table">
+                                <TableBody>
+                                    {
+                                        this.state.school_admissions &&
+                                        this.state.school_admissions.map(items => {
+                                            return (
+                                                items.classes.map(item => {
+                                                    return (
+                                                        <StyledTableRow>
+                                                            <StyledTableCell>
+                                                                {item.name}
+                                                            </StyledTableCell>
+                                                            <StyledTableCell>
+                                                                {item.seats}
+                                                            </StyledTableCell>
+                                                        </StyledTableRow>
+                                                    )
+                                                })
+                                            )
+                                        })
+                                    }
+                                </TableBody>
+                            </Table>
                         </div>
                     </div>
 
-                    <div style={{ width: "93%" }} >
-                        <div>
-                            <strong>Subjects</strong>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>
-                                    Medical
-                                </li>
-                                <li>
-                                    Non - Medical
-                                </li>
-                                <li>
-                                    <div>
-                                        Third Language :
-                                    </div>
-                                    <ul>
-                                        <li>Sanskrit</li>
-                                        <li>German</li>
-                                        <li>Spanish</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div style={{ width: "93%" }} id="fee-structure" >
+                    <div style={{ width: "93%", margin: '10px 0px' }} id="fee-structure" >
                         <div>
                             <strong>Fees Structure</strong>
                             <div>
@@ -213,14 +301,14 @@ export class SchoolDisplay extends Component {
                                                 this.props.location.state.data.fee_structure &&
                                                 this.props.location.state.data.fee_structure.map(item => {
                                                     return (
-                                                        <tr>
-                                                            <td>
+                                                        <StyledTableRowFees>
+                                                            <StyledTableCell>
                                                                 {item.name}
-                                                            </td>
-                                                            <td>
+                                                            </StyledTableCell>
+                                                            <StyledTableCell>
                                                                 {item.fees}
-                                                            </td>
-                                                        </tr>
+                                                            </StyledTableCell>
+                                                        </StyledTableRowFees>
                                                     )
                                                 })
                                             }
@@ -230,6 +318,42 @@ export class SchoolDisplay extends Component {
                             </div>
                         </div>
                     </div>
+
+                    <div style={{ width: "93%", margin: "10px 0px" }} >
+                        <div>
+                            <strong>Point System</strong>
+                        </div>
+                        <div>
+                            <Table aria-label="customized table">
+                                <TableBody>
+                                    {
+                                        this.state.school_admissions &&
+                                        this.state.school_admissions.map(items => {
+                                            return (
+                                                items.classes.map(item => {
+                                                    return (
+                                                        <StyledTableRowPoints>
+                                                            <StyledTableCell>
+                                                                {item.name}
+                                                            </StyledTableCell>
+                                                            <StyledTableCell>
+                                                                {item.seats}
+                                                            </StyledTableCell>
+                                                        </StyledTableRowPoints>
+                                                    )
+                                                })
+                                            )
+                                        })
+                                    }
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </div>
+                    
+                    <div className="school-footer" >
+                        Pidgin 2020 trusted by {this.props.location.state.data.name}.
+                    </div>
+
 
                 </div>
             </div>

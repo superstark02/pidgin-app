@@ -249,8 +249,8 @@ export class SchoolDisplay extends Component {
                         </Accordion>
                     </div>
 
-                    <div style={{ width: "93%", margin: "10px 0px" }} >
-                        <div>
+                    <div style={{ width: "93%", margin: "30px 0px" }} >
+                        <div style={{marginBottom:"10px"}} >
                             <strong>Admissions</strong>
                         </div>
                         <div>
@@ -283,7 +283,7 @@ export class SchoolDisplay extends Component {
                         </div>
                     </div>
 
-                    <div style={{ width: "93%", margin: '10px 0px' }} id="fee-structure" >
+                    <div style={{ width: "93%", margin: '30px 0px' }} id="fee-structure" >
                         <div>
                             <strong>Fees Structure</strong>
                             <div>
@@ -296,31 +296,33 @@ export class SchoolDisplay extends Component {
                                         Pre - Primary
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <table style={{ tableLayout: "fixed", width: "100%" }} >
-                                            {
-                                                this.props.location.state.data.fee_structure &&
-                                                this.props.location.state.data.fee_structure.map(item => {
-                                                    return (
-                                                        <StyledTableRowFees>
-                                                            <StyledTableCell>
-                                                                {item.name}
-                                                            </StyledTableCell>
-                                                            <StyledTableCell>
-                                                                {item.fees}
-                                                            </StyledTableCell>
-                                                        </StyledTableRowFees>
-                                                    )
-                                                })
-                                            }
-                                        </table>
+                                        <Table aria-label="customized table">
+                                            <TableBody>
+                                                {
+                                                    this.props.location.state.data.fee_structure &&
+                                                    this.props.location.state.data.fee_structure.map(item => {
+                                                        return (
+                                                            <StyledTableRowFees>
+                                                                <StyledTableCell>
+                                                                    {item.name}
+                                                                </StyledTableCell>
+                                                                <StyledTableCell>
+                                                                    {item.fees}
+                                                                </StyledTableCell>
+                                                            </StyledTableRowFees>
+                                                        )
+                                                    })
+                                                }
+                                            </TableBody>
+                                        </Table>
                                     </AccordionDetails>
                                 </Accordion>
                             </div>
                         </div>
                     </div>
 
-                    <div style={{ width: "93%", margin: "10px 0px" }} >
-                        <div>
+                    <div style={{ width: "93%", margin: "30px 0px" }} >
+                        <div style={{marginBottom:"10px"}}>
                             <strong>Point System</strong>
                         </div>
                         <div>
@@ -349,7 +351,7 @@ export class SchoolDisplay extends Component {
                             </Table>
                         </div>
                     </div>
-                    
+
                     <div className="school-footer" >
                         Pidgin 2020 trusted by {this.props.location.state.data.name}.
                     </div>

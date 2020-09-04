@@ -3,6 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '../../Components/AppBar';
+import StudentForm from '../../Components/Schools/Forms/StudentForm';
+import ParentForm from '../../Components/Schools/Forms/ParentForm';
 
 const AntTabs = withStyles({
     root: {
@@ -67,7 +69,7 @@ function TabPanel(props) {
 export class CommonFormPage extends Component {
 
     state = {
-        value: 0
+        value: 1
     }
 
     handleChange = (event, newValue) => {
@@ -88,10 +90,10 @@ export class CommonFormPage extends Component {
 
                 <div>
                     <TabPanel value={this.state.value} index={0}>
-                        Item One
+                        <StudentForm/>
                     </TabPanel>
                     <TabPanel value={this.state.value} index={1}>
-                        Item Two
+                        <ParentForm/>
                     </TabPanel>
                     <TabPanel value={this.state.value} index={2}>
                         Item Three

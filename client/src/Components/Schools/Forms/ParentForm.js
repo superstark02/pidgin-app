@@ -4,7 +4,7 @@ export class ParentForm extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={()=>{this.props.handleChange(2)}} >
                     <label style={{width:"100vw"}} >Particulars of Parents</label>
 
                     <div>Name</div>

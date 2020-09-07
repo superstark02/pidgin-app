@@ -10,8 +10,7 @@ import PaymentOutlinedIcon from '@material-ui/icons/PaymentOutlined';
 import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import firebase, { db } from '../../firebase'
-import getUser from '../../Database/getUer';
+import firebase from '../../firebase'
 import { Link } from 'react-router-dom'
 import SimpleBottomNavigation from '../../Components/BottomNavBar';
 
@@ -49,13 +48,15 @@ const help = [
 export class Account extends Component {
 
     state = {
-        user: null,
+        user_name: -1,
+        user_email:null,
+        user_image:null
     }
 
     componentDidMount() {
-        getUser().then(result => {
-            this.setState({ user: result })
-        })
+        /*this.setState({user_name:window.Android.getName()})
+        this.setState({user_email:window.Android.getEmail()})
+        this.setState({user_image:window.Android.getPhoto()})*/
     }
 
     handleLogout = () => {
@@ -67,25 +68,7 @@ export class Account extends Component {
     }
 
     handleLogin = () => {
-        var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithCredential(provider).then(user => {
-            this.setState({ user: user.user.displayName })
-        }).catch(function (error) {
-            // Handle Errors here.
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            console.log(errorMessage, email, credential)
-            db.collection("Errors").add(
-                {
-                    email: email,
-                    error: errorMessage,
-                    credential: credential
-                }
-            )
-        });
+        window.Android.signIn();
     }
 
     render() {
@@ -93,7 +76,7 @@ export class Account extends Component {
             <div>
                 <div style={{ padding: "10px" }} >
                     {
-                        this.state.user === -1 ? (
+                        this.state.user_name === -1 ? (
                             <div className="acc-header" style={{ fontSize: "15px" }} >
                                 <p style={{ fontSize: "20px", marginBottom: "5px" }} >
                                     <b>Your Profile</b>
@@ -109,17 +92,17 @@ export class Account extends Component {
                             </Button>
                                 <div style={{ backgroundColor: "rgba(0,0,0,0.2)", height: '0.5px' }} ></div>
                             </div>
-                        ) : this.state.user !== null ? (
+                        ) : this.state.name !== null ? (
                             <div className="acc-header" style={{ fontSize: "15px", display: "flex", justifyContent: "space-between" }} >
                                 <div>
                                     <p style={{ fontSize: "20px", marginBottom: "5px" }} >
-                                        <b>{this.state.user[0]}</b>
+                                        <b>{this.state.user_name}</b>
                                     </p>
-                                    {this.state.user[2]}
+                                    {this.state.user_email}
                                     <div style={{ backgroundColor: "rgba(0,0,0,0.2)", height: '0.5px' }} ></div>
                                 </div>
                                 <div className="wrap" style={{ width: "auto" }} >
-                                    <img src={this.state.user[1]} width="70px" height="70px" style={{ borderRadius: "50%" }} />
+                                    <img src={this.state.user_image} width="70px" height="70px" style={{ borderRadius: "50%" }} />
                                 </div>
                             </div>
                         ) : (
@@ -188,7 +171,6 @@ export class Account extends Component {
                     </strong>
                     <div style={{ height: "100px" }} ></div>
                 </div>
-                <SimpleBottomNavigation value="Account" />
             </div>
         )
     }

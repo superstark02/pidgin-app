@@ -3,19 +3,62 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import SearchIcon from '@material-ui/icons/Search';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+import School from '../Pages/Schools/School';
+import HomePage from '../Pages/Home/HomePage';
+import Account from '../Pages/Account/Account';
+import Cart from '../Pages/Cart/Cart';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-prevent-tabpanel-${index}`}
+      aria-labelledby={`scrollable-prevent-tab-${index}`}
+      {...other}
+      style={{ position: "fixed", top: "0", width: "100%", zIndex: "-10000", overflowY: "scroll", height: "100vh" }}
+    >
+      {value === index && (
+        <div>
+          <Typography>{children}</Typography>
+        </div>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
 
 const AntTabs = withStyles({
   root: {
-    height:'65px',
-    justifyContent:"space-evenly",
-    display:"flex"
+    flexGrow: 1,
+    width: '100%',
+    position: "fixed",
+    bottom: "0",
+    boxShadow: "0px 0px 5px rgba(0,0,0,0.3)",
+    zIndex: "1000000",
+    backgroundColor:"white",
+    height:"65px"
   },
   indicator: {
-    backgroundColor: '#000000',
+    backgroundColor: '#00b6c7',
+    position: "absolute",
+    top:0,
+    '& > span': {
+      maxWidth: 0,
+      width: '100%',
+      backgroundColor: '#00b6c7',
+    },
   },
 })(Tabs);
 
@@ -24,30 +67,18 @@ const AntTab = withStyles({
     textTransform: 'none',
     minWidth: 72,
     fontFamily: "inherit",
-    '&:hover': {
-      color: '#000000',
-      opacity: 0.4,
-    },
-    '&$selected': {
-      color: '#000000',
-    },
-    '&:focus': {
-      color: '#000000',
-    },
-    '&:focus': {
-      opacity: 1,
-    },
-    fontSize:"10px",
-    padding:"0px"
+    fontSize: "10px",
+    padding: "0px",
+    zIndex: "10000"
   },
   indicator: {
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: 'transparent',
     '& > span': {
-      maxWidth: 40,
+      maxWidth: 0,
       width: '100%',
-      backgroundColor: 'red',
+      backgroundColor: 'white',
     },
   },
   selected: {},
@@ -68,30 +99,38 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     position: "fixed",
     bottom: "0",
-    boxShadow:"0px 0px 5px rgba(0,0,0,0.3)",
-    zIndex:"100"
+    boxShadow: "0px 0px 5px rgba(0,0,0,0.3)",
+    zIndex: "1000000"
   },
-  icon:{
-    margin: '0px'
+  icon: {
+    margin: '0px',
   }
 }));
 
 export default function SimpleBottomNavigation(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState("Home");
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
-    setValue(props.value);
+    setValue(newValue);
   };
 
   return (
-    <div className={classes.root}>
-      <AntTabs value={props.value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
-        <AntTab icon={<Link to="/class" ><HomeOutlinedIcon className={classes.icon} /></Link>} label="Home" value="Home" />
-        <AntTab icon={<Link to="/schools" ><SearchIcon/></Link>} label="Schools" className={classes.icon} value="Schools" />
-        <AntTab icon={<Link to="/cart" ><ShoppingCartOutlinedIcon/></Link>} label="Cart" className={classes.icon} value="Cart" />
-        <AntTab icon={<Link to="/account" ><AccountCircleOutlinedIcon/></Link>} label="Account" className={classes.icon} value="Account" />
+    <div  style={{ zIndex: "100000" }} >
+      <AntTabs value={value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
+        <AntTab icon={<img src="https://img.icons8.com/pastel-glyph/64/000000/school-1-1.png" width="20px" />} className={classes.icon} label="Schools" />
+        <AntTab icon={<MenuBookRoundedIcon />} label="Learn" className={classes.icon} />
+        <AntTab icon={<AccountCircleOutlinedIcon />} label="Account" className={classes.icon} />
       </AntTabs>
+      <TabPanel value={value} index={0}>
+        <School />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <HomePage/>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Account/>
+      </TabPanel>
     </div>
   );
 }

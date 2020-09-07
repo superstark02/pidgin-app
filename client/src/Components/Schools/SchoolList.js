@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { FaMap } from 'react-icons/fa'
 import ButtonBase from '@material-ui/core/ButtonBase/ButtonBase';
 import Box from '@material-ui/core/Box';
-import SimpleBottomNavigation from '../BottomNavBar';
 import '../../CSS/Components/Home/ClassList.css'
 import '../../CSS/Components/Schools/Schools.css'
 
@@ -23,7 +22,6 @@ export class SchoolList extends Component {
     render() {
         return (
             <div>
-                <SimpleBottomNavigation value="Schools" />
                 {
                     this.state.schools &&
                     this.state.schools.map(item => {

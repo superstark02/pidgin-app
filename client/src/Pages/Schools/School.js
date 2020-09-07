@@ -5,6 +5,7 @@ import SchoolList from '../../Components/Schools/SchoolList'
 import { Link } from 'react-router-dom'
 import Procedure from '../../Components/Schools/Procedure'
 import Geocode from "react-geocode";
+import SimpleBottomNavigation from '../../Components/BottomNavBar'
 
 export class School extends Component {
 

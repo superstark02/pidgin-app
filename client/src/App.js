@@ -13,10 +13,10 @@ import ListYourClasses from './Pages/Account/ListYourClasses';
 import YourPayments from './Pages/Account/YourPayments';
 import Feedback from './Pages/Account/Feedback';
 import Account from './Pages/Account/Account';
-import School from './Pages/Schools/School';
 import SchoolDisplay from './Components/Schools/SchoolDisplay';
 import CommonForms from './Pages/Schools/CommonForms';
 import CommonFormPage from './Pages/Schools/CommonFormPage';
+import SimpleBottomNavigation from './Components/BottomNavBar';
 
 class App extends React.Component{
 
@@ -25,7 +25,7 @@ class App extends React.Component{
       <Router history={history}>
         <Switch>
           <Route exact path='/cart' component={Cart} ></Route>
-          <Route exact path='/class' component={HomePage} ></Route>
+          <Route exact path='/class' component={SimpleBottomNavigation} ></Route>
           <Route exact path='/search' component={SearchPage} ></Route>
           <Route exact path='/account' component={Account} ></Route>
           <Route exact path='/pidgin/feedback' component={Feedback} ></Route>
@@ -34,7 +34,7 @@ class App extends React.Component{
           <Route exact path='/help' component={Help} ></Route>
           <Route exact path='/list-your-classes' component={ListYourClasses} ></Route>
           <Route exact path='/your-payments' component={YourPayments} ></Route>
-          <Route exact path='/schools' component={School} ></Route>
+          <Route exact path='/schools' component={HomePage} ></Route>
           <Route exact path='/common-forms' component={CommonForms} ></Route>
           <Route exact path='/your-common-form' component={CommonFormPage} ></Route>
           <Route exact path='/class-display/:id' component={ClassesDisplay} ></Route>

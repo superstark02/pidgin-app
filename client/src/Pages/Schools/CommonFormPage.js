@@ -69,11 +69,15 @@ function TabPanel(props) {
 export class CommonFormPage extends Component {
 
     state = {
-        value: 1
+        value: 0
     }
 
     handleChange = (event, newValue) => {
         this.setState({ value: newValue })
+    }
+
+    handleCustomChange = (newValue) => {
+        this.setState({value:newValue})
     }
 
     render() {
@@ -90,13 +94,13 @@ export class CommonFormPage extends Component {
 
                 <div>
                     <TabPanel value={this.state.value} index={0}>
-                        <StudentForm/>
+                        <StudentForm handleChange={this.handleCustomChange} />
                     </TabPanel>
                     <TabPanel value={this.state.value} index={1}>
-                        <ParentForm/>
+                        <ParentForm handleChange={this.handleCustomChange}  />
                     </TabPanel>
                     <TabPanel value={this.state.value} index={2}>
-                        Item Three
+                        Under Construction
                     </TabPanel>
                 </div>
 

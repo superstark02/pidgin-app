@@ -44,7 +44,6 @@ export class HomePage extends Component {
                     )
                 }
                 </div>
-                <SimpleBottomNavigation value="Home" />
             </div>
         )
     }

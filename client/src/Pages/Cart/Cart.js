@@ -60,18 +60,17 @@ export class Cart extends Component {
     }
 
     componentDidMount() {
-        getUser().then(user => {
-            if (user) {
-                rdb.ref().child("carts").child(user[3]).on('value', snap => {
-                    this.setState({ user: user })
-                    var item = []
-                    snap.forEach(doc => {
-                        item.push(doc.val())
-                    })
-                    this.setState({ cart: item })
+        var user = false//window.Android.getUid();
+        if (user) {
+            rdb.ref().child("carts").child(user).on('value', snap => {
+                this.setState({ user: user })
+                var item = []
+                snap.forEach(doc => {
+                    item.push(doc.val())
                 })
-            }
-        })
+                this.setState({ cart: item })
+            })
+        }
     }
 
     deleteItem = (title) => {

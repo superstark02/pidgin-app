@@ -9,47 +9,16 @@ app.use(cors())
 app.use(bodyParser.json())
 
 const razorpay = new Razorpay({
-    key_id: 'rzp_test_YkaGnE7ZDrAhTW',
-    key_secret: 'u8MNcA7rewUxvZWVo612i0jt'
+	key_id: 'rzp_test_YkaGnE7ZDrAhTW',
+	key_secret: 'u8MNcA7rewUxvZWVo612i0jt'
 })
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
-    functions.logger.info("Hello logs!", { structuredData: true });
-    response.send("Hello from Firebase!");
+	functions.logger.info("Hello logs!", { structuredData: true });
+	response.send("Hello from Firebase!");
 });
-
-var amount = []
-exports.payment = functions.https.onCall((data, context) => {
-    amount.push(data.amount)
-})
-
-
-
-app.post('/verification', (req, res) => {
-	// do a validation
-	const secret = '12345678'
-
-	console.log(req.body)
-
-	const crypto = require('crypto')
-
-	const shasum = crypto.createHmac('sha256', secret)
-	shasum.update(JSON.stringify(req.body))
-	const digest = shasum.digest('hex')
-
-	console.log(digest, req.headers['x-razorpay-signature'])
-
-	if (digest === req.headers['x-razorpay-signature']) {
-		console.log('request is legit')
-		// process it
-		require('fs').writeFileSync('payment1.json', JSON.stringify(req.body, null, 4))
-	} else {
-		// pass it
-	}
-	res.json({ status: 'ok' })
-})
 
 app.post('/cart', async (req, res) => {
 	const payment_capture = 1
@@ -65,7 +34,6 @@ app.post('/cart', async (req, res) => {
 
 	try {
 		const response = await razorpay.orders.create(options)
-		console.log(response)
 		res.json({
 			id: response.id,
 			currency: response.currency,
@@ -76,3 +44,17 @@ app.post('/cart', async (req, res) => {
 	}
 })
 
+
+app.post('/we-support-teachers', async (req, res) => {
+	const accountSid = 'ACd3d54f5a4421e13e7f3dd4cc3cd959df';
+	const authToken = '8f9d524d2b157ee2507bb78382b0d836';
+	const client = require('twilio')(accountSid, authToken);
+
+	client.messages
+		.create({
+			from: 'whatsapp:+14155238886',
+			body: 'Hello there!',
+			to: 'whatsapp:+919910197196'
+		})
+		.then(message => console.log(message.sid));
+})

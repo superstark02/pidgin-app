@@ -4,13 +4,14 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import School from '../Pages/Schools/School';
+import PlaySchools from '../Pages/PlaySchool/PlaySchools'
 import HomePage from '../Pages/Home/HomePage';
 import Account from '../Pages/Account/Account';
 import Cart from '../Pages/Cart/Cart';
+import abc from '../Images/BottomNavBar/abc.png'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -119,6 +120,7 @@ export default function SimpleBottomNavigation(props) {
     <div  style={{ zIndex: "100000" }} >
       <AntTabs value={value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
         <AntTab icon={<img src="https://img.icons8.com/pastel-glyph/64/000000/school-1-1.png" width="20px" />} className={classes.icon} label="Schools" />
+        <AntTab icon={<img src={abc} width="20px" />} label="Play-Schools" className={classes.icon} />
         <AntTab icon={<MenuBookRoundedIcon />} label="Learn" className={classes.icon} />
         <AntTab icon={<AccountCircleOutlinedIcon />} label="Account" className={classes.icon} />
       </AntTabs>
@@ -126,9 +128,12 @@ export default function SimpleBottomNavigation(props) {
         <School />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <HomePage/>
+        <PlaySchools/>
       </TabPanel>
       <TabPanel value={value} index={2}>
+        <HomePage/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
         <Account/>
       </TabPanel>
     </div>

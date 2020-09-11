@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import getUser from '../../Database/getUer'
-import firebase, { rdb } from '../../firebase'
+import { rdb } from '../../firebase'
 import '../../CSS/Pages/Cart.css'
-import SimpleBottomNavigation from '../../Components/BottomNavBar'
+import AppBar from '../../Components/AppBar'
 
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -25,7 +24,6 @@ export class Cart extends Component {
     }
 
     displayRazorpay = async () => {
-        const sendAmount = firebase.functions().httpsCallable('payment');
         const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
         if (!res) {
@@ -40,7 +38,7 @@ export class Cart extends Component {
         const options = {
             key: "rzp_test_YkaGnE7ZDrAhTW",
             currency: 'INR',
-            amount: 499*100,
+            amount: 499 * 100,
             order_id: data.id,
             name: 'Pidgin',
             description: '',
@@ -60,7 +58,7 @@ export class Cart extends Component {
     }
 
     componentDidMount() {
-        var user = false//window.Android.getUid();
+        var user = window.Android.getUid();
         if (user) {
             rdb.ref().child("carts").child(user).on('value', snap => {
                 this.setState({ user: user })
@@ -74,73 +72,77 @@ export class Cart extends Component {
     }
 
     deleteItem = (title) => {
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                rdb.ref().child("carts").child(user.uid).child(title).remove();
-            }
-        })
+        var user = window.Android.getUid();
+        if (user) {
+            rdb.ref().child("carts").child(user).child(title).remove();
+        }
     }
 
     render() {
 
         if (this.state.cart) {
             return (
-                <div className="cart-page" >
-                    <SimpleBottomNavigation value="Cart" />
-                    {
-                        this.state.cart.map(item => {
-                            return (
-                                <div className="cart-item" >
-                                    <div>
-                                        <img src={item.image} alt="s" width="100px" />
-                                    </div>
-                                    <div style={{ width: "200px", marginLeft: "5px" }} >
+                <div>
+                    <AppBar name="About" goBack={this.props.history.goBack} />
+                    <div className="cart-page" >
+                        
+                        {
+                            this.state.cart.map(item => {
+                                return (
+                                    <div className="cart-item" >
                                         <div>
-                                            {item.title}
+                                            <img src={item.image} alt="s" width="100px" />
                                         </div>
-                                        <div className="class-button" style={{ width: "fit-content", color: "#f05f7f" }} onClick={() => { this.deleteItem(item.title) }} >
-                                            - DELETE
+                                        <div style={{ width: "200px", marginLeft: "5px" }} >
+                                            <div>
+                                                {item.title}
+                                            </div>
+                                            <div className="class-button" style={{ width: "fit-content", color: "#f05f7f" }} onClick={() => { this.deleteItem(item.title) }} >
+                                                - DELETE
                                                         </div>
-                                        <div style={{ fontSize: "12px", margin: "10px 0px" }} >
-                                            <b>Mode:</b> {item.mode}
+                                            <div style={{ fontSize: "12px", margin: "10px 0px" }} >
+                                                <b>Mode:</b> {item.mode}
+                                            </div>
+                                            <div style={{ fontSize: "12px" }}>
+                                                <b>Type:</b> {item.type}
+                                            </div>
                                         </div>
-                                        <div style={{ fontSize: "12px" }}>
-                                            <b>Type:</b> {item.type}
+                                        <div>
+                                            &#8377;{item.price}
                                         </div>
                                     </div>
-                                    <div>
-                                        &#8377;{item.price}
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                    <div className="cart-total" >
-                        <div>
-                            Total:
+                                )
+                            })
+                        }
+                        <div className="cart-total" >
+                            <div>
+                                Total:
                         </div>
-                        <div>
-                            &#8377;600
+                            <div>
+                                &#8377;600
                         </div>
-                    </div>
+                        </div>
 
-                    <div className="wrap" >
-                        <button className="pay-button" onClick={this.displayRazorpay} >
-                            CHECKOUT
+                        <div className="wrap" >
+                            <button className="pay-button" onClick={this.displayRazorpay} >
+                                CHECKOUT
                         </button>
-                    </div>
+                        </div>
 
+                    </div>
                 </div>
             )
         }
 
         return (
-            <div className="wrap" style={{ height: "100vh", padding: "40px", textAlign: 'center', flexDirection: "column", color: "rgba(0,0,0,0.3)" }}  >
-                <div>FIND A BETTER TEACHER FOR BETTER LIFE</div>
-                <div style={{ fontSize: "12px" }} >
-                    No items in cart
+            <div>
+                <AppBar name="About" goBack={this.props.history.goBack} />
+                <div className="wrap" style={{ height: "90vh", padding: "40px", textAlign: 'center', flexDirection: "column", color: "rgba(0,0,0,0.3)" }}  >
+                    <div>FIND A BETTER TEACHER FOR BETTER LIFE</div>
+                    <div style={{ fontSize: "12px" }} >
+                        No items in cart
+                    </div>
                 </div>
-                <SimpleBottomNavigation value="Cart" />
             </div>
         )
     }

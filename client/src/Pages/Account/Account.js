@@ -13,6 +13,7 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import firebase from '../../firebase'
 import { Link } from 'react-router-dom'
 import SimpleBottomNavigation from '../../Components/BottomNavBar';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 const general = [
     {
@@ -29,6 +30,11 @@ const general = [
         name: "List Your Classes",
         icon: <ListAltOutlinedIcon />,
         link: "/list-your-classes"
+    },
+    {
+        name: "Your Cart",
+        icon: <ShoppingCartOutlinedIcon />,
+        link: "/cart"
     }
 ]
 
@@ -111,7 +117,7 @@ export class Account extends Component {
                     }
 
                     <div>
-                        <div style={{ color: "rgba(0,0,0,0.4)", fontSize: '12px', textTransform: "uppercase", fontWeight: "700" }} >
+                        <div style={{ color: "rgba(0,0,0,0.4)", fontSize: '12px', textTransform: "uppercase", fontWeight: "700",marginTop:"20px" }} >
                             General
                     </div>
 

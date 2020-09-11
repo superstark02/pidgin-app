@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AppBar from '../../Components/AppBar'
 import '../../CSS/Components/Class/ClassDisplay.css'
 import '../../CSS/Pages/Schools/SchoolDisplay.css'
+import '../../CSS/Pages/PlaySchools/PlaySchoolDisplay.css'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { getSubCollection } from '../../Database/getCollection';
@@ -15,8 +16,10 @@ import { FaStoreAlt, FaSwimmingPool, FaSnowflake, FaRobot, FaSkating } from 'rea
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
+import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
+import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -69,7 +72,7 @@ function a11yProps(index) {
     };
 }
 
-export class SchoolDisplay extends Component {
+export class PlaySchoolDisplay extends Component {
 
     state = {
         school_data: null,
@@ -110,10 +113,6 @@ export class SchoolDisplay extends Component {
                     </div>
                 </div>
 
-                <div className="wrap" >
-                    <button className="standard-button" style={{ fontFamily: "Thin", padding: "6px 10px", width: "93%" }} >Select This School</button>
-                </div>
-
                 <div className="wrap" style={{ position: "sticky", top: "50px", backgroundColor: "white", zIndex: "10000" }} >
                     <Tabs
                         value={this.state.value}
@@ -151,7 +150,21 @@ export class SchoolDisplay extends Component {
                         }
                     </div>
 
-                    <div style={{ width: "93%" }} >
+                    <div className="show-all-photos" >
+                        <div>
+                            Show all photos
+                        </div>
+                        <div>
+                            <div>
+                                <LocationOnOutlinedIcon />
+                            </div>
+                            <div style={{ fontSize: "8px", textAlign: "center", marginTop: "-5px" }} >
+                                Map
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{ width: "93%", boxShadow:"0px 0px 10px rgba(0,0,0,0.2)", borderRadius:"5px" }} >
                         <Accordion elevation={0} >
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -198,7 +211,12 @@ export class SchoolDisplay extends Component {
                         </Accordion>
                     </div>
 
-                    <div style={{ width: "93%", display: "flex", margin: "20px 0px", flexWrap: "wrap" }} >
+                    <div style={{ width: "93%", margin: '30px 0px' }} >
+                        <div style={{ marginBottom: "10px" }} >
+                            <strong>Features</strong>
+                        </div>
+                    </div>
+                    <div style={{ width: "93%", display: "flex", flexWrap: "wrap", marginBottom: "10px", boxShadow:"0px 0px 10px rgba(0,0,0,0.2)", borderRadius:"5px" }} >
                         <div className="features-item" >
                             <div>
                                 CBSE
@@ -249,37 +267,37 @@ export class SchoolDisplay extends Component {
                         </div>
                     </div>
 
+                    <div className="wrap" >
+                        <div className="timings" >
+                            <div className="wrap" style={{ width: "auto", fontSize: "40px" }} >
+                                <EventNoteOutlinedIcon style={{ fontSize: "30px", marginRight: "10px" }} />
+                            </div>
+                            <div>
+                                <div>
+                                    Working Days
+                                </div>
+                                <div style={{ fontFamily: "Thin" }} >
+                                    Monday - Saturday
+                                </div>
+                            </div>
+                            <div className="vertical" ></div>
+                            <div>
+                                <div>
+                                    Timings
+                                </div>
+                                <div style={{ fontFamily: "Thin" }}>
+                                    8:00 pm - 12:00 pm
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div style={{ width: "93%", margin: "30px 0px" }} >
-                        <div style={{marginBottom:"10px"}} >
+                        <div style={{ marginBottom: "10px" }} >
                             <strong>Admissions</strong>
                         </div>
                         <div>
-                            Amissions are open for:
-                        </div>
-                        <div>
-                            <Table aria-label="customized table">
-                                <TableBody>
-                                    {
-                                        this.state.school_admissions &&
-                                        this.state.school_admissions.map(items => {
-                                            return (
-                                                items.classes.map(item => {
-                                                    return (
-                                                        <StyledTableRow>
-                                                            <StyledTableCell>
-                                                                {item.name}
-                                                            </StyledTableCell>
-                                                            <StyledTableCell>
-                                                                {item.seats}
-                                                            </StyledTableCell>
-                                                        </StyledTableRow>
-                                                    )
-                                                })
-                                            )
-                                        })
-                                    }
-                                </TableBody>
-                            </Table>
+
                         </div>
                     </div>
 
@@ -321,46 +339,31 @@ export class SchoolDisplay extends Component {
                         </div>
                     </div>
 
-                    <div style={{ width: "93%", margin: "30px 0px" }} >
-                        <div style={{marginBottom:"10px"}}>
-                            <strong>Point System</strong>
-                        </div>
-                        <div>
-                            <Table aria-label="customized table">
-                                <TableBody>
-                                    {
-                                        this.state.school_admissions &&
-                                        this.state.school_admissions.map(items => {
-                                            return (
-                                                items.classes.map(item => {
-                                                    return (
-                                                        <StyledTableRowPoints>
-                                                            <StyledTableCell>
-                                                                {item.name}
-                                                            </StyledTableCell>
-                                                            <StyledTableCell>
-                                                                {item.seats}
-                                                            </StyledTableCell>
-                                                        </StyledTableRowPoints>
-                                                    )
-                                                })
-                                            )
-                                        })
-                                    }
-                                </TableBody>
-                            </Table>
-                        </div>
-                    </div>
-
                     <div className="school-footer" >
                         Pidgin 2020 trusted by {this.props.location.state.data.name}.
                     </div>
 
-
+                    <div style={{position:"fixed",bottom:"0",width:"100%",boxShadow:"0px 0px 10px rgba(0, 0, 0, 0.2)",backgroundColor:"white"}} >
+                        <div className="school-display-button" >
+                            <div>
+                                <div>
+                                    Form Fees
+                            </div>
+                                <div style={{ fontFamily: "Thin" }} >
+                                    &#8377; 0
+                            </div>
+                            </div>
+                            <button className="standard-button" style={{ fontFamily: "Thin", padding: "20px 10px", width: "50%", borderRadius: "5px" }} >
+                                ADD TO LIST
+                        </button>
+                        </div>
+                        <div style={{fontSize:"10px",textAlign:"center",padding:"10px"}} >
+                            By proceeding, you agree to our Policies
+                        </div>
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-export default SchoolDisplay

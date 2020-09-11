@@ -1,0 +1,22 @@
+.timings{
+    width: 93%;
+    background-color: #617ea3;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    font-size: 11px;
+    justify-content: space-between;
+}
+.vertical{
+    width: 1px;
+    background: white;
+    margin: 0px 10px;
+}
+
+.show-all-photos{
+    width: 93%;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}

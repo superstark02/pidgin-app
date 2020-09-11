@@ -14,7 +14,14 @@
     color: grey;
     font-size: 9px;
     text-align: center;
-    padding: 5vh 10px;
+    padding: 10vh 10px;
     width: 93%;
+}
+
+.school-display-button{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 10px 0px;
 }
 

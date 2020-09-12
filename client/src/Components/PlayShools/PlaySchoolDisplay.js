@@ -5,7 +5,7 @@ import '../../CSS/Pages/Schools/SchoolDisplay.css'
 import '../../CSS/Pages/PlaySchools/PlaySchoolDisplay.css'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { getSubCollection } from '../../Database/getCollection';
+import getCollection, { getSubCollection } from '../../Database/getCollection';
 import Carousel from 'nuka-carousel';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -57,9 +57,10 @@ const StyledTableRowFees = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
             backgroundColor: "#f2b7057c",
+            borderRadius:"10px"
         },
         '&:nth-of-type(even)': {
-            backgroundColor: "#f2b705",
+            backgroundColor: "#f2b7057c",
         },
     },
 }))(TableRow);
@@ -89,6 +90,8 @@ export class PlaySchoolDisplay extends Component {
         getSubCollection("Schools", this.props.location.state.data.id, "Admissions").then(items => {
             this.setState({ school_admissions: items })
         })
+
+        
     }
 
     handleChange = (event, newValue) => {
@@ -164,7 +167,7 @@ export class PlaySchoolDisplay extends Component {
                         </div>
                     </div>
 
-                    <div style={{ width: "93%", boxShadow:"0px 0px 10px rgba(0,0,0,0.2)", borderRadius:"5px" }} >
+                    <div style={{ width: "93%", boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px", margin: "20px 0px" }} >
                         <Accordion elevation={0} >
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -211,12 +214,12 @@ export class PlaySchoolDisplay extends Component {
                         </Accordion>
                     </div>
 
-                    <div style={{ width: "93%", margin: '30px 0px' }} >
-                        <div style={{ marginBottom: "10px" }} >
+                    <div style={{ width: "93%", marginTop: "20px", marginBottom: "20px" }} >
+                        <div>
                             <strong>Features</strong>
                         </div>
                     </div>
-                    <div style={{ width: "93%", display: "flex", flexWrap: "wrap", marginBottom: "10px", boxShadow:"0px 0px 10px rgba(0,0,0,0.2)", borderRadius:"5px" }} >
+                    <div style={{ width: "93%", display: "flex", flexWrap: "wrap", marginBottom: "10px", boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px" }} >
                         <div className="features-item" >
                             <div>
                                 CBSE
@@ -267,7 +270,7 @@ export class PlaySchoolDisplay extends Component {
                         </div>
                     </div>
 
-                    <div className="wrap" >
+                    <div className="wrap" style={{ margin: "20px 0px" }} >
                         <div className="timings" >
                             <div className="wrap" style={{ width: "auto", fontSize: "40px" }} >
                                 <EventNoteOutlinedIcon style={{ fontSize: "30px", marginRight: "10px" }} />
@@ -296,45 +299,36 @@ export class PlaySchoolDisplay extends Component {
                         <div style={{ marginBottom: "10px" }} >
                             <strong>Admissions</strong>
                         </div>
-                        <div>
+                        <div style={{ boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px" }} >
 
                         </div>
                     </div>
 
                     <div style={{ width: "93%", margin: '30px 0px' }} id="fee-structure" >
                         <div>
-                            <strong>Fees Structure</strong>
-                            <div>
-                                <Accordion elevation={0} >
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                    >
-                                        Pre - Primary
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <Table aria-label="customized table">
-                                            <TableBody>
-                                                {
-                                                    this.props.location.state.data.fee_structure &&
-                                                    this.props.location.state.data.fee_structure.map(item => {
-                                                        return (
-                                                            <StyledTableRowFees>
-                                                                <StyledTableCell>
-                                                                    {item.name}
-                                                                </StyledTableCell>
-                                                                <StyledTableCell>
-                                                                    {item.fees}
-                                                                </StyledTableCell>
-                                                            </StyledTableRowFees>
-                                                        )
-                                                    })
-                                                }
-                                            </TableBody>
-                                        </Table>
-                                    </AccordionDetails>
-                                </Accordion>
+                            <div style={{ margin: "10px 0px" }} >
+                                <strong>Fees Structure</strong>
+                            </div>
+                            <div style={{ boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px" }} >
+                                <Table aria-label="customized table">
+                                    <TableBody>
+                                        {
+                                            this.props.location.state.data.fee_structure &&
+                                            this.props.location.state.data.fee_structure.map(item => {
+                                                return (
+                                                    <StyledTableRowFees>
+                                                        <StyledTableCell>
+                                                            {item.name}
+                                                        </StyledTableCell>
+                                                        <StyledTableCell>
+                                                            {item.fees}
+                                                        </StyledTableCell>
+                                                    </StyledTableRowFees>
+                                                )
+                                            })
+                                        }
+                                    </TableBody>
+                                </Table>
                             </div>
                         </div>
                     </div>
@@ -343,7 +337,9 @@ export class PlaySchoolDisplay extends Component {
                         Pidgin 2020 trusted by {this.props.location.state.data.name}.
                     </div>
 
-                    <div style={{position:"fixed",bottom:"0",width:"100%",boxShadow:"0px 0px 10px rgba(0, 0, 0, 0.2)",backgroundColor:"white"}} >
+                    <div style={{ height: "150px" }} ></div>
+
+                    <div style={{ position: "fixed", bottom: "0", width: "100%", boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)", backgroundColor: "white" }} >
                         <div className="school-display-button" >
                             <div>
                                 <div>
@@ -353,11 +349,11 @@ export class PlaySchoolDisplay extends Component {
                                     &#8377; 0
                             </div>
                             </div>
-                            <button className="standard-button" style={{ fontFamily: "Thin", padding: "20px 10px", width: "50%", borderRadius: "5px" }} >
+                            <button className="standard-button" style={{ padding: "20px 10px", width: "50%", borderRadius: "5px" }} >
                                 ADD TO LIST
                         </button>
                         </div>
-                        <div style={{fontSize:"10px",textAlign:"center",padding:"10px"}} >
+                        <div style={{ fontSize: "10px", textAlign: "center", padding: "10px" }} >
                             By proceeding, you agree to our Policies
                         </div>
                     </div>

@@ -10,7 +10,6 @@ import Carousel from 'nuka-carousel';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import { Link } from 'react-router-dom'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FaStoreAlt, FaSwimmingPool, FaSnowflake, FaRobot, FaSkating } from 'react-icons/fa';
 import Table from '@material-ui/core/Table';
@@ -31,6 +30,22 @@ const StyledTableCell = withStyles((theme) => ({
         fontFamily: "inherit"
     },
 }))(TableCell);
+
+const StyledTableCellMoreInfo = withStyles((theme) => ({
+    body: {
+        fontSize: "inherit",
+        padding: "6px 10px",
+        fontFamily: "inherit"
+    },
+}))(TableCell);
+
+const StyledTableRowMoreInfo = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
+    },
+}))(TableRow);
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
@@ -57,7 +72,7 @@ const StyledTableRowPoints = withStyles((theme) => ({
 const StyledTableRowFees = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
-            backgroundColor: "#f2b7057c",
+            backgroundColor: "#f2b705",
             borderRadius: "10px"
         },
         '&:nth-of-type(even)': {
@@ -82,6 +97,8 @@ export default class SchoolDisplay extends Component {
         school_images: null,
         school_admissions: null,
         school_fees: null,
+        school_points: null,
+        more_info: null
     }
 
     componentDidMount() {
@@ -95,6 +112,14 @@ export default class SchoolDisplay extends Component {
 
         getSubCollection("Schools", this.props.match.params.id, "Fees").then(items => {
             this.setState({ school_fees: items })
+        })
+
+        getSubCollection("Schools", this.props.match.params.id, "Points").then(items => {
+            this.setState({ school_points: items })
+        })
+
+        getSubCollection("Schools", this.props.match.params.id, "Other").then(items => {
+            this.setState({ more_info: items })
         })
 
         getDoc("Schools", this.props.match.params.id).then(snap => {
@@ -125,23 +150,6 @@ export default class SchoolDisplay extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div className="wrap" style={{ position: "sticky", top: "50px", backgroundColor: "white", zIndex: "10000" }} >
-                                <Tabs
-                                    value={this.state.value}
-                                    onChange={this.handleChange}
-                                    indicatorColor="primary"
-                                    textColor="primary"
-                                    variant="scrollable"
-                                    scrollButtons="auto"
-                                    aria-label="scrollable auto tabs example"
-                                >
-                                    <Tab label={<a href="#details" >Details</a>} style={{ textTransform: "none" }} {...a11yProps(0)} />
-                                    <Tab label={<a href="#admissions" >Admission</a>} style={{ textTransform: "none" }} {...a11yProps(1)} />
-                                    <Tab label={<a href="#points">Points</a>} style={{ textTransform: "none" }} {...a11yProps(2)} />
-                                    <Tab label={<a href="#fee-structure" >Fees Structure</a>} style={{ textTransform: "none" }} {...a11yProps(3)} />
-                                </Tabs>
                             </div>
 
                             <div className="wrap" style={{ flexDirection: "column" }} id="details" >
@@ -316,7 +324,7 @@ export default class SchoolDisplay extends Component {
                                             this.state.school_admissions.map(item => {
                                                 return (
                                                     <div>
-                                                        <Accordion>
+                                                        <Accordion elevation={0} >
                                                             <AccordionSummary
                                                                 expandIcon={<ExpandMoreIcon />}
                                                                 aria-controls="panel1a-content"
@@ -416,17 +424,21 @@ export default class SchoolDisplay extends Component {
                                             <Table aria-label="customized table">
                                                 <TableBody>
                                                     {
-                                                        this.state.school_data.fee_structure &&
-                                                        this.state.school_data.fee_structure.map(item => {
+                                                        this.state.school_points &&
+                                                        this.state.school_points.map(item => {
                                                             return (
-                                                                <StyledTableRowFees>
-                                                                    <StyledTableCell>
-                                                                        {item.name}
-                                                                    </StyledTableCell>
-                                                                    <StyledTableCell>
-                                                                        {item.fees}
-                                                                    </StyledTableCell>
-                                                                </StyledTableRowFees>
+                                                                item.points.map(points => {
+                                                                    return (
+                                                                        <StyledTableRowPoints>
+                                                                            <StyledTableCell>
+                                                                                {points.name}
+                                                                            </StyledTableCell>
+                                                                            <StyledTableCell>
+                                                                                {points.value}
+                                                                            </StyledTableCell>
+                                                                        </StyledTableRowPoints>
+                                                                    )
+                                                                })
                                                             )
                                                         })
                                                     }
@@ -446,7 +458,7 @@ export default class SchoolDisplay extends Component {
                                                 this.state.school_fees &&
                                                 this.state.school_fees.map(f => {
                                                     return (
-                                                        f.fees&&
+                                                        f.fees &&
                                                         f.fees.map(i => {
                                                             return (
                                                                 <Accordion elevation={0} >
@@ -463,14 +475,14 @@ export default class SchoolDisplay extends Component {
                                                                                 {
                                                                                     i.items.map(_i => {
                                                                                         return (
-                                                                                            <StyledTableRow>
+                                                                                            <StyledTableRowFees>
                                                                                                 <StyledTableCell>
                                                                                                     {_i.name}
                                                                                                 </StyledTableCell>
                                                                                                 <StyledTableCell>
                                                                                                     {_i.value}
                                                                                                 </StyledTableCell>
-                                                                                            </StyledTableRow>
+                                                                                            </StyledTableRowFees>
                                                                                         )
                                                                                     })
                                                                                 }
@@ -489,6 +501,44 @@ export default class SchoolDisplay extends Component {
                                                 </TableBody>
                                             </Table>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div style={{ width: "93%", margin: '30px 0px' }} id="fee-structure" >
+                                    <div>
+                                        <div style={{ margin: "10px 0px" }} >
+                                            <strong>Some More Information</strong>
+                                        </div>
+                                        {
+                                            this.state.more_info &&
+                                            this.state.more_info.map(i => {
+                                                return (
+                                                    <div style={{boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px"}} >
+                                                        <div style={{padding:"15px 10px", color:"white", backgroundColor:"#242429",borderRadius:"5px"}} >
+                                                            {i.title}
+                                                        </div>
+                                                        <Table aria-label="customized table">
+                                                            <TableBody>
+                                                                {
+                                                                    i.items.map(_i => {
+                                                                        return (
+                                                                            <StyledTableRowMoreInfo>
+                                                                                <StyledTableCellMoreInfo>
+                                                                                    {_i.name}
+                                                                                </StyledTableCellMoreInfo>
+                                                                                <StyledTableCellMoreInfo>
+                                                                                    {_i.value}
+                                                                                </StyledTableCellMoreInfo>
+                                                                            </StyledTableRowMoreInfo>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </TableBody>
+                                                        </Table>
+                                                    </div>
+                                                )
+                                            })
+                                        }
                                     </div>
                                 </div>
 

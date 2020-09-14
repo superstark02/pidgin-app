@@ -14,7 +14,7 @@ export default class PlaySchoolList extends Component {
     }
 
     componentDidMount() {
-        getCollection("Schools").then(items => {
+        getCollection("PlaySchools").then(items => {
             this.setState({ schools: items })
         })
     }

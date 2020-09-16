@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import Procedure from '../../Components/Schools/Procedure'
 import Geocode from "react-geocode";
 import SimpleBottomNavigation from '../../Components/BottomNavBar'
+import axios from 'axios'
 
 export class School extends Component {
 
@@ -27,6 +28,16 @@ export class School extends Component {
         );
     }
 
+    send = () => {
+        axios.post('https://us-central1-pidgin-ds.cloudfunctions.net/',{hello:"hello"}).then(response=>{
+            console.log(response.data)
+            console.log("Done")
+        }).catch(err=>{
+            console.log(err)
+            console.log("Done-1")
+        })
+    }
+
     render() {
         return (
             <div>
@@ -35,6 +46,9 @@ export class School extends Component {
                     <div placeholder="Search schools.." className="home-search-box">Search schools..</div>
                 </div>
                 <Procedure />
+                <button onClick={this.send} >
+                    Message
+                </button>
                 <Link to="/common-forms" >
                     <div className="wrap" style={{ margin: "10px 0px" }} >
                         <img src={common_form_img} width="93%" />

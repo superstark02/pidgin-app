@@ -74,6 +74,7 @@ class Courses extends React.Component {
         })
         this.handleClose()
         this.setState({open_snackbar:true})
+
     }
 
     handleClose = () => {

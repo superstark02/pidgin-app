@@ -31,7 +31,7 @@ export class Cart extends Component {
             return
         }
 
-        const data = await fetch('https://us-central1-pidgin-ds.cloudfunctions.net/payment', { method: 'POST' }).then((t) =>
+        const data = await fetch('https://us-central1-pidgin-ds.cloudfunctions.net/', { method: 'POST' }).then((t) =>
             t.json()
         )
 

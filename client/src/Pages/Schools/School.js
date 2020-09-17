@@ -7,6 +7,7 @@ import Procedure from '../../Components/Schools/Procedure'
 import Geocode from "react-geocode";
 import SimpleBottomNavigation from '../../Components/BottomNavBar'
 import axios from 'axios'
+import GotToCart from '../../Components/Schools/GotToCart'
 
 export class School extends Component {
 
@@ -46,15 +47,13 @@ export class School extends Component {
                     <div placeholder="Search schools.." className="home-search-box">Search schools..</div>
                 </div>
                 <Procedure />
-                <button onClick={this.send} >
-                    Message
-                </button>
                 <Link to="/common-forms" >
                     <div className="wrap" style={{ margin: "10px 0px" }} >
                         <img src={common_form_img} width="93%" />
                     </div>
                 </Link>
                 <SchoolList />
+                <GotToCart/>
             </div>
         )
     }

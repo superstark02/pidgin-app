@@ -1,0 +1,26 @@
+.list-item{
+    display: flex;
+    margin: 10px 0px;
+    border-radius: 10px;
+    width: 93%;
+    justify-content: space-between;
+}
+
+.selected-school-adress{
+    font-family: Thin;
+    font-size: 11px;
+    color: grey;
+}
+
+.common-form-check{
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 20px 0px;
+    margin-bottom: 30px;
+}
+
+.pnp-bill{
+    background-color: #90ff3527;
+    padding: 10px;
+    width: 93%;
+    display: flex;
+}

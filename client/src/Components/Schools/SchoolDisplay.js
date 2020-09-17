@@ -3,9 +3,7 @@ import AppBar from '../../Components/AppBar'
 import '../../CSS/Components/Class/ClassDisplay.css'
 import '../../CSS/Pages/Schools/SchoolDisplay.css'
 import '../../CSS/Pages/PlaySchools/PlaySchoolDisplay.css'
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import getCollection, { getSubCollection } from '../../Database/getCollection';
+import { getSubCollection } from '../../Database/getCollection';
 import Carousel from 'nuka-carousel';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -20,7 +18,15 @@ import TableRow from '@material-ui/core/TableRow';
 import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import getDoc from '../../Database/getDoc'
+import addToList from '../../Database/addDoc'
 
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const StyledTableCell = withStyles((theme) => ({
     body: {
@@ -98,7 +104,17 @@ export default class SchoolDisplay extends Component {
         school_admissions: null,
         school_fees: null,
         school_points: null,
-        more_info: null
+        more_info: null,
+        open_snackbar:false
+    }
+
+    handleAdd = () => {
+        var id = window.Android.getUid()
+        if (id) {
+            addToList("Users", id, this.state.school_data).then(result => {
+                this.setState({open_snackbar:true})
+            })
+        }
     }
 
     componentDidMount() {
@@ -513,8 +529,8 @@ export default class SchoolDisplay extends Component {
                                             this.state.more_info &&
                                             this.state.more_info.map(i => {
                                                 return (
-                                                    <div style={{boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px"}} >
-                                                        <div style={{padding:"15px 10px", color:"white", backgroundColor:"#242429",borderRadius:"5px"}} >
+                                                    <div style={{ boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px" }} >
+                                                        <div style={{ padding: "15px 10px", color: "white", backgroundColor: "#242429", borderRadius: "5px" }} >
                                                             {i.title}
                                                         </div>
                                                         <Table aria-label="customized table">
@@ -558,11 +574,11 @@ export default class SchoolDisplay extends Component {
                                                 &#8377; 0
                                             </div>
                                         </div>
-                                        <button className="standard-button" style={{ padding: "20px 10px", width: "50%", borderRadius: "5px" }} >
+                                        <button className="standard-button" onClick={this.handleAdd} style={{ padding: "10px 10px", width: "50%", borderRadius: "5px" }} >
                                             ADD TO LIST
                                         </button>
                                     </div>
-                                    <div style={{ fontSize: "10px", textAlign: "center", padding: "10px", paddingTop: "0px" }} >
+                                    <div style={{ fontSize: "10px", textAlign: "center", padding: "5px", paddingTop: "0px" }} >
                                         By proceeding, you agree to our Policies
                                     </div>
                                 </div>
@@ -572,6 +588,11 @@ export default class SchoolDisplay extends Component {
                             <div></div>
                         )
                 }
+                <Snackbar open={this.state.open_snackbar} autoHideDuration={3000} onClose={this.handleCloseSnackbar}>
+                    <Alert onClose={this.handleCloseSnackbar} severity="success">
+                        Added To Cart!
+                        </Alert>
+                </Snackbar>
             </div>
         )
     }

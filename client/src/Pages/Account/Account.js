@@ -60,9 +60,9 @@ export class Account extends Component {
     }
 
     componentDidMount() {
-        /*this.setState({user_name:window.Android.getName()})
+        this.setState({user_name:window.Android.getName()})
         this.setState({user_email:window.Android.getEmail()})
-        this.setState({user_image:window.Android.getPhoto()})*/
+        this.setState({user_image:window.Android.getPhoto()})   
     }
 
     handleLogout = () => {

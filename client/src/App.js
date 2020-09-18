@@ -18,6 +18,7 @@ import CommonForms from './Pages/Schools/CommonForms';
 import CommonFormPage from './Pages/Schools/CommonFormPage';
 import SimpleBottomNavigation from './Components/BottomNavBar';
 import { PlaySchoolDisplay } from './Components/PlayShools/PlaySchoolDisplay';
+import BillView from './Pages/Schools/BillView';
 import SelectedSchools from './Pages/Schools/SelectedSchools';
 
 class App extends React.Component{
@@ -42,6 +43,7 @@ class App extends React.Component{
           <Route exact path='/common-forms' component={CommonForms} ></Route>
           <Route exact path='/your-common-form' component={CommonFormPage} ></Route>
           <Route exact path='/play-school-display/:id' component={PlaySchoolDisplay} ></Route>
+          <Route exact path='/bill' component={BillView} ></Route>
           <Route exact path='/list' component={SelectedSchools} ></Route>
 
           <Route exact path='/class-display/:id' component={ClassesDisplay} ></Route>

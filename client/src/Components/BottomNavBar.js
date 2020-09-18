@@ -120,7 +120,6 @@ export default function SimpleBottomNavigation(props) {
     <div  style={{ zIndex: "100000" }} >
       <AntTabs value={value} variant="fullWidth" onChange={handleChange} aria-label="ant example">
         <AntTab icon={<img src="https://img.icons8.com/pastel-glyph/64/000000/school-1-1.png" width="20px" />} className={classes.icon} label="Schools" />
-        <AntTab icon={<img src={abc} width="20px" />} label="Play-Schools" className={classes.icon} />
         <AntTab icon={<MenuBookRoundedIcon />} label="Learn" className={classes.icon} />
         <AntTab icon={<AccountCircleOutlinedIcon />} label="Account" className={classes.icon} />
       </AntTabs>
@@ -128,12 +127,9 @@ export default function SimpleBottomNavigation(props) {
         <School />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <PlaySchools/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
         <HomePage/>
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={2}>
         <Account/>
       </TabPanel>
     </div>

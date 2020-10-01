@@ -8,6 +8,7 @@ import Procedure from '../../Components/Schools/Procedure'
 import Geocode from "react-geocode";
 import axios from 'axios'
 import GotToCart from '../../Components/Schools/GotToCart'
+import { ButtonBase } from '@material-ui/core'
 
 export class School extends Component {
 
@@ -47,21 +48,25 @@ export class School extends Component {
                     <div placeholder="Search schools.." className="home-search-box">Search schools..</div>
                 </div>
 
-                <div className="wrap" style={{margin:"10px 0px"}} >
-                    <div style={{width:"93%",display:"flex"}} >
-                        <div className="wrap" >
-                            <Link to="/common-forms" >
-                                <img src={common_form_img} width="90%" style={{ borderRadius: "10px" }} />
-                            </Link>
-                        </div>
-                        <div className="wrap" >
-                            <Link to="/bill" >
-                                <img src={list} width="90%" style={{ borderRadius: "10px" }} />
-                            </Link>
-                        </div>
+                <div className="wrap" style={{ margin: "10px 0px" }} >
+                    <div style={{ width: "93%", display: "flex", justifyContent: "space-between" }} >
+                        <Link to="/your-common-form" >
+                            <div className="wrap">
+                                <ButtonBase>
+                                    <img src={common_form_img} width="90%" style={{ borderRadius: "10px" }} />
+                                </ButtonBase>
+                            </div>
+                        </Link>
+                        <Link to="/bill" >
+                            <div className="wrap">
+                                <ButtonBase>
+                                    <img src={list} width="90%" style={{ borderRadius: "10px" }} />
+                                </ButtonBase>
+                            </div>
+                        </Link>
                     </div>
                 </div>
-                
+
                 <div style={{ padding: "0px 3.5%", marginTop: "15px" }} >
                     Procedure
                     <div style={{ fontFamily: "Thin", fontSize: "12px" }} >

@@ -43,15 +43,16 @@ export class CommonForms extends Component {
         var date = temp.getDate()+"-"+temp.getMonth()+"-"+temp.getFullYear();
 
         var id = "YlTSGgoJG2R8Ii5qqnkXXd7gzSa2"
-        id = window.Android.getUid()
+        //id = window.Android.getUid()
 
         addSubDoc("Users",id,"Forms",this.state.name,{name:this.state.name,date_created:date})
         this.setState({open:false})
+        this.getData(id)
     }
 
     componentDidMount(){
         var id = 'YlTSGgoJG2R8Ii5qqnkXXd7gzSa2'
-        id = window.Android.getUid()
+        //id = window.Android.getUid()
 
         this.getData(id)
     }
@@ -65,8 +66,7 @@ export class CommonForms extends Component {
     render() {
         return (
             <div>
-                <AppBar name="Common Forms" goBack={this.props.history.goBack} />
-                <Fab aria-label="add" onClick={this.handleClickOpen} style={{ position: "fixed", bottom: "0px", right: "0px", margin: "20px", backgroundColor: "#1fbecd", zIndex: "10000" }}>
+                <Fab aria-label="add" onClick={this.handleClickOpen} style={{ position: "fixed", bottom: "60px", right: "0px", margin: "20px", backgroundColor: "#1fbecd", zIndex: "10000" }}>
                     <AddIcon style={{ color: "white" }} />
                 </Fab>
                 <div className="wrap" style={{ flexDirection: "column" }} >

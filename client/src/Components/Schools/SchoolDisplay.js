@@ -22,6 +22,7 @@ import addToList from '../../Database/addDoc'
 
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import Loading from '../Loading'
 
 
 function Alert(props) {
@@ -33,7 +34,10 @@ const StyledTableCell = withStyles((theme) => ({
         fontSize: "inherit",
         color: "white",
         padding: "6px 10px",
-        fontFamily: "inherit"
+        fontFamily: "inherit",
+        borderRadius:"5px",
+        background:"transparent",
+        boxShadow: "0px 0px 10px #617ea369",
     },
 }))(TableCell);
 
@@ -56,10 +60,10 @@ const StyledTableRowMoreInfo = withStyles((theme) => ({
 const StyledTableRow = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
-            backgroundColor: "#0abf8c80",
+            backgroundColor: "#F4BD51",
         },
         '&:nth-of-type(even)': {
-            backgroundColor: "#0ABF8C",
+            backgroundColor: "#F4BD51",
         },
     },
 }))(TableRow);
@@ -67,10 +71,10 @@ const StyledTableRow = withStyles((theme) => ({
 const StyledTableRowPoints = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
-            backgroundColor: "#85dbdb",
+            backgroundColor: "#0abf8c80",
         },
         '&:nth-of-type(even)': {
-            backgroundColor: "#04BFBF",
+            backgroundColor: "#0abf8c80",
         },
     },
 }))(TableRow);
@@ -78,11 +82,11 @@ const StyledTableRowPoints = withStyles((theme) => ({
 const StyledTableRowFees = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
-            backgroundColor: "#f2b705",
+            backgroundColor: "#78D6FA",
             borderRadius: "10px"
         },
         '&:nth-of-type(even)': {
-            backgroundColor: "#f2b7057c",
+            backgroundColor: "#78D6FA",
         },
     },
 }))(TableRow);
@@ -152,7 +156,7 @@ export default class SchoolDisplay extends Component {
             <div>
                 <AppBar name="" goBack={this.props.history.goBack} />
                 {
-                    this.state.school_data !== null ? (
+                    this.state.school_data !== null && this.state.school_images !== null ? (
                         <div>
                             <div className='wrap' style={{ flexDirection: "column" }} >
                                 <div style={{ display: 'flex', width: "93%", margin: "20px 0px" }} >
@@ -436,13 +440,14 @@ export default class SchoolDisplay extends Component {
                                         <div style={{ margin: "10px 0px" }} >
                                             <strong>Points System</strong>
                                         </div>
-                                        <div style={{ boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px" }} >
+                                        <div style={{ borderRadius: "5px" }} >
                                             <Table aria-label="customized table">
                                                 <TableBody>
                                                     {
                                                         this.state.school_points &&
                                                         this.state.school_points.map(item => {
                                                             return (
+                                                                item.points&&
                                                                 item.points.map(points => {
                                                                     return (
                                                                         <StyledTableRowPoints>
@@ -536,6 +541,7 @@ export default class SchoolDisplay extends Component {
                                                         <Table aria-label="customized table">
                                                             <TableBody>
                                                                 {
+                                                                    i.items&&
                                                                     i.items.map(_i => {
                                                                         return (
                                                                             <StyledTableRowMoreInfo>
@@ -585,13 +591,15 @@ export default class SchoolDisplay extends Component {
                             </div>
                         </div>
                     ) : (
-                            <div></div>
+                            <div>
+                                <Loading></Loading>
+                            </div>
                         )
                 }
                 <Snackbar open={this.state.open_snackbar} autoHideDuration={3000} onClose={this.handleCloseSnackbar}>
                     <Alert onClose={this.handleCloseSnackbar} severity="success">
                         Added To Cart!
-                        </Alert>
+                    </Alert>
                 </Snackbar>
             </div>
         )

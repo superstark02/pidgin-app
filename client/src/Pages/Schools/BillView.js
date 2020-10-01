@@ -14,7 +14,7 @@ export class BillView extends Component {
 
     componentDidMount() {
         var id = "YlTSGgoJG2R8Ii5qqnkXXd7gzSa2"
-        var id = window.Android.getUid()
+        //var id = window.Android.getUid()
 
         getSubCollection("Users", id, "List").then(snap => {
             this.setState({ list: snap })
@@ -25,7 +25,6 @@ export class BillView extends Component {
     render() {
         return (
             <div>
-                <AppBar name="Selected Schools" goBack={this.props.history.goBack} />
 
                 <div className="common-form-check wrap" >
                     <div style={{ width: "93%" }} >

@@ -53,8 +53,10 @@ export class SchoolList extends Component {
 
                                                 <div class='map'>
                                                     <div>
-                                                        <div><a href={item.location}><FaMap size='15' color='#1389fd' /></a></div>
-                                                        <div>Map</div>
+                                                        <a href={item.location}><FaMap size='15' color='#1389fd' />
+                                                            <div></div>
+                                                            <div>Map</div>
+                                                        </a>
                                                     </div>
                                                 </div>
 
@@ -66,9 +68,30 @@ export class SchoolList extends Component {
                                                     data: item
                                                 }
                                             }} >
+
                                                 <div class='type' style={{ fontFamily: "Thin", textAlign: "left" }} >
                                                     {item.address}
                                                 </div>
+
+                                                <div style={{ padding: "10px", justifyContent: "space-evenly",display:"flex"}} >
+                                                    <div style={{width:"50%", borderRight:"1px solid grey", padding:"10px 0px" }} className="wrap"  >
+                                                        {
+                                                            item.admission ? (
+                                                                <div className="admission-open" >
+                                                                    ADMISSIONS OPEN
+                                                                </div>
+                                                            ) : (
+                                                                    <div className="admission-closed" >
+                                                                        ADMISSIONS CLOSED
+                                                                    </div>
+                                                                )
+                                                        }
+                                                    </div>
+                                                    <div style={{width:"50%", borderLeft:"1px solid grey", padding:"10px 0px" }} className="wrap" >
+                                                        Registeration: &#8377;{item.fees}
+                                                    </div>
+                                                </div>
+
                                             </Link>
                                         </Box>
                                     </div>

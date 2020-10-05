@@ -6,3 +6,13 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
 }
+
+.admission-open{
+    color: #f50057;
+    font-size: 12px;
+}
+
+.admission-closed{
+    color: #2196f3;
+    font-size: 12px;
+}

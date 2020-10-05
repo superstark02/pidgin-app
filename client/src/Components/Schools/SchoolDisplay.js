@@ -9,7 +9,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { FaStoreAlt, FaSwimmingPool, FaSnowflake, FaRobot, FaSkating } from 'react-icons/fa';
+import { FaStoreAlt, FaSwimmingPool, FaSnowflake, FaRobot, FaSkating, FaBook, FaDesktop, FaUtensils, FaVolleyballBall } from 'react-icons/fa';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -35,9 +35,8 @@ const StyledTableCell = withStyles((theme) => ({
         color: "white",
         padding: "6px 10px",
         fontFamily: "inherit",
-        borderRadius:"5px",
-        background:"transparent",
-        boxShadow: "0px 0px 10px #617ea369",
+        borderRadius: "5px",
+        background: "transparent",
     },
 }))(TableCell);
 
@@ -109,14 +108,14 @@ export default class SchoolDisplay extends Component {
         school_fees: null,
         school_points: null,
         more_info: null,
-        open_snackbar:false
+        open_snackbar: false
     }
 
     handleAdd = () => {
         var id = window.Android.getUid()
         if (id) {
             addToList("Users", id, this.state.school_data).then(result => {
-                this.setState({open_snackbar:true})
+                this.setState({ open_snackbar: true })
             })
         }
     }
@@ -207,7 +206,7 @@ export default class SchoolDisplay extends Component {
                                 </div>
 
                                 <div style={{ width: "93%", boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px", margin: "20px 0px" }} >
-                                    <Accordion elevation={0} >
+                                    <Accordion elevation={0}  >
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel1a-content"
@@ -217,37 +216,7 @@ export default class SchoolDisplay extends Component {
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <div style={{ fontFamily: "Thin" }} >
-                                                To strive for better and better, not resting on one’s laurels; seek solutions
-                                                not excuses, deliver results and serve the community by providing quality
-                                                education.
-                                            </div>
-                                        </AccordionDetails>
-                                    </Accordion>
-
-                                    <Accordion elevation={0} >
-                                        <AccordionSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                            aria-controls="panel1a-content"
-                                            id="panel1a-header"
-                                        >
-                                            <strong>Mission</strong>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <div style={{ fontFamily: "Thin" }} >
-                                                *To develop scholastic personalities and impart knowledge to maximise
-                                                skills and competencies.
-                                                *To impart wisdom that transforms mere knowledge into meaningful
-                                                initiative and enterprise for a harmonious and prosperous society.
-                                                *To provide holistic education to society as a whole without prejudice or
-                                                discrimination.
-                                                *To Equip the child to meet all challenges –social, moral and intellectual
-                                                and comprehend human values.
-                                                *To make students responsible, law abiding and enlightened citizens of
-                                                global society.
-                                                *To Instil traits of team work, empathy, patience, perseverance and
-                                                respect of elders and mentors.
-                                                *To ensure sensitivity and commitment to environment and all beings to
-                                                save the planet for future generation
+                                                {this.state.school_data.vision}
                                             </div>
                                         </AccordionDetails>
                                     </Accordion>
@@ -259,54 +228,149 @@ export default class SchoolDisplay extends Component {
                                     </div>
                                 </div>
                                 <div style={{ width: "93%", display: "flex", flexWrap: "wrap", marginBottom: "10px", boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px" }} >
+
                                     <div className="features-item" >
                                         <div>
-                                            CBSE
+                                            {this.state.school_data.features.board}
                                         </div>
                                         <div className="features-caption" >
                                             Board
-                                        </div>
+                                                    </div>
                                     </div>
-                                    <div className="features-item" >
-                                        <div>
-                                            <FaSnowflake />
-                                        </div>
-                                        <div className="features-caption" >
-                                            AC
-                                        </div>
-                                    </div>
-                                    <div className="features-item" >
-                                        <div>
-                                            <FaStoreAlt />
-                                        </div>
-                                        <div className="features-caption">
-                                            Canteen
-                                        </div>
-                                    </div>
-                                    <div className="features-item" >
-                                        <div>
-                                            <FaSwimmingPool />
-                                        </div>
-                                        <div className="features-caption">
-                                            Pool
-                                        </div>
-                                    </div>
-                                    <div className="features-item" >
-                                        <div>
-                                            <FaRobot />
-                                        </div>
-                                        <div className="features-caption">
-                                            Robotics Lab
-                                        </div>
-                                    </div>
-                                    <div className="features-item" >
-                                        <div>
-                                            <FaSkating />
-                                        </div>
-                                        <div className="features-caption">
-                                            Skating Arena
-                                        </div>
-                                    </div>
+                                    {
+                                        this.state.school_data.features.ac ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaSnowflake />
+                                                </div>
+                                                <div className="features-caption" >
+                                                    AC
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
+
+                                    {
+                                        this.state.school_data.features.canteen ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaStoreAlt />
+                                                </div>
+                                                <div className="features-caption">
+                                                    Canteen
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
+
+                                    {
+                                        this.state.school_data.features.pool ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaSwimmingPool />
+                                                </div>
+                                                <div className="features-caption">
+                                                    Pool
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
+
+                                    {
+                                        this.state.school_data.features.robtics ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaRobot />
+                                                </div>
+                                                <div className="features-caption">
+                                                    Robotics Lab
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
+
+                                    {
+                                        this.state.school_data.features.lunch ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaUtensils />
+                                                </div>
+                                                <div className="features-caption">
+                                                    Lunch
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
+
+                                    {
+                                        this.state.school_data.features.library ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaBook />
+                                                </div>
+                                                <div className="features-caption">
+                                                    Library
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
+
+                                    {
+                                        this.state.school_data.features.computer_labs ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaDesktop />
+                                                </div>
+                                                <div className="features-caption">
+                                                    Computer Labs
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
+
+                                    {
+                                        this.state.school_data.features.sports ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaVolleyballBall />
+                                                </div>
+                                                <div className="features-caption">
+                                                    Sports Field
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
+
+                                    {
+                                        this.state.school_data.features.skating ? (
+                                            <div className="features-item" >
+                                                <div>
+                                                    <FaSkating />
+                                                </div>
+                                                <div className="features-caption">
+                                                    Skating Arena
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <div></div>
+                                            )
+                                    }
                                 </div>
 
                                 <div className="wrap" style={{ margin: "20px 0px" }} >
@@ -447,7 +511,7 @@ export default class SchoolDisplay extends Component {
                                                         this.state.school_points &&
                                                         this.state.school_points.map(item => {
                                                             return (
-                                                                item.points&&
+                                                                item.points &&
                                                                 item.points.map(points => {
                                                                     return (
                                                                         <StyledTableRowPoints>
@@ -469,7 +533,7 @@ export default class SchoolDisplay extends Component {
                                     </div>
                                 </div>
 
-                                <div style={{ width: "93%", margin: '30px 0px' }} id="fee-structure" >
+                                {/*<div style={{ width: "93%", margin: '30px 0px' }} id="fee-structure" >
                                     <div>
                                         <div style={{ margin: "10px 0px" }} >
                                             <strong>Fees Structure</strong>
@@ -523,7 +587,7 @@ export default class SchoolDisplay extends Component {
                                             </Table>
                                         </div>
                                     </div>
-                                </div>
+                                </div>*/}
 
                                 <div style={{ width: "93%", margin: '30px 0px' }} id="fee-structure" >
                                     <div>
@@ -541,7 +605,7 @@ export default class SchoolDisplay extends Component {
                                                         <Table aria-label="customized table">
                                                             <TableBody>
                                                                 {
-                                                                    i.items&&
+                                                                    i.items &&
                                                                     i.items.map(_i => {
                                                                         return (
                                                                             <StyledTableRowMoreInfo>
@@ -577,7 +641,7 @@ export default class SchoolDisplay extends Component {
                                                 Form Fees
                                             </div>
                                             <div style={{ fontFamily: "Thin" }} >
-                                                &#8377; 0
+                                                &#8377; {this.state.school_data.fees}
                                             </div>
                                         </div>
                                         <button className="standard-button" onClick={this.handleAdd} style={{ padding: "10px 10px", width: "50%", borderRadius: "5px" }} >

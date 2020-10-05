@@ -108,15 +108,20 @@ export default class SchoolDisplay extends Component {
         school_fees: null,
         school_points: null,
         more_info: null,
-        open_snackbar: false
+        open_snackbar: false,
+        fail_snackbar:false,
     }
 
     handleAdd = () => {
-        var id = window.Android.getUid()
-        if (id) {
+        var id = "ss"
+        id = window.Android.getUid()
+        if (id && this.state.school_data.admission ) {
             addToList("Users", id, this.state.school_data).then(result => {
                 this.setState({ open_snackbar: true })
             })
+        }
+        else{
+            this.setState({fail_snackbar:true})
         }
     }
 
@@ -193,16 +198,29 @@ export default class SchoolDisplay extends Component {
 
                                 <div className="show-all-photos" >
                                     <div>
-                                        Show all photos
+                                        {
+                                            this.state.school_data.admission ? (
+                                                <div style={{color:"#2196f3"}} >
+                                                    Admissions Open
+                                                </div>
+                                            ) : (
+                                                <div style={{color:"#f50057"}} >
+                                                    Sorry, Admissions are closed right now
+                                                </div>
+                                            )
+                                        }
                                     </div>
-                                    <div>
+
+                                    <a href={this.state.school_data.location} >
                                         <div>
-                                            <LocationOnOutlinedIcon />
+                                            <div>
+                                                <LocationOnOutlinedIcon />
+                                            </div>
+                                            <div style={{ fontSize: "8px", textAlign: "center", marginTop: "-5px" }} >
+                                                Map
+                                            </div>
                                         </div>
-                                        <div style={{ fontSize: "8px", textAlign: "center", marginTop: "-5px" }} >
-                                            Map
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
 
                                 <div style={{ width: "93%", boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px", margin: "20px 0px" }} >
@@ -663,6 +681,12 @@ export default class SchoolDisplay extends Component {
                 <Snackbar open={this.state.open_snackbar} autoHideDuration={3000} onClose={this.handleCloseSnackbar}>
                     <Alert onClose={this.handleCloseSnackbar} severity="success">
                         Added To Cart!
+                    </Alert>
+                </Snackbar>
+
+                <Snackbar open={this.state.fail_snackbar} autoHideDuration={3000} onClose={this.handleCloseSnackbar}>
+                    <Alert onClose={this.handleCloseSnackbar} severity="error">
+                        Admissions Closed
                     </Alert>
                 </Snackbar>
             </div>

@@ -48,7 +48,7 @@ export class School extends Component {
                     <div placeholder="Search schools.." className="home-search-box">Search schools..</div>
                 </div>
 
-                <div className="wrap" style={{ margin: "10px 0px" }} >
+                {/*<div className="wrap" style={{ margin: "10px 0px" }} >
                     <div style={{ width: "93%", display: "flex", justifyContent: "space-between" }} >
                         <Link to="/your-common-form" >
                             <div className="wrap">
@@ -65,7 +65,7 @@ export class School extends Component {
                             </div>
                         </Link>
                     </div>
-                </div>
+                </div>*/}
 
                 <div style={{ padding: "0px 3.5%", marginTop: "15px" }} >
                     Procedure

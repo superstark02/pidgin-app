@@ -24,6 +24,55 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import Loading from '../Loading'
 
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
+const AntTabs = withStyles({
+    root: {
+        borderBottom: '1px solid #e8e8e8',
+    },
+    indicator: {
+        backgroundColor: '#1890ff',
+    },
+})(Tabs);
+
+const AntTab = withStyles((theme) => ({
+    root: {
+        textTransform: 'none',
+        fontWeight: theme.typography.fontWeightRegular,
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
+        '&:hover': {
+            color: '#40a9ff',
+            opacity: 1,
+        },
+        '&$selected': {
+            color: '#1890ff',
+            fontWeight: theme.typography.fontWeightMedium,
+        },
+        '&:focus': {
+            color: '#40a9ff',
+        },
+    },
+    selected: {},
+}))((props) => <Tab disableRipple {...props} />);
+
+function a11yProps(index) {
+    return {
+        id: `full-width-tab-${index}`,
+        'aria-controls': `full-width-tabpanel-${index}`,
+    };
+}
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -91,13 +140,6 @@ const StyledTableRowFees = withStyles((theme) => ({
 }))(TableRow);
 
 
-function a11yProps(index) {
-    return {
-        id: `scrollable-auto-tab-${index}`,
-        'aria-controls': `scrollable-auto-tabpanel-${index}`,
-    };
-}
-
 export default class SchoolDisplay extends Component {
 
     state = {
@@ -109,19 +151,24 @@ export default class SchoolDisplay extends Component {
         school_points: null,
         more_info: null,
         open_snackbar: false,
-        fail_snackbar:false,
+        fail_snackbar: false,
+        value: 0,
     }
 
+    handleChange = (event, newValue) => {
+        this.setState({ value: newValue })
+    };
+
     handleAdd = () => {
-        var id = "ss"
-        id = window.Android.getUid()
-        if (id && this.state.school_data.admission ) {
+        var id = "YlTSGgoJG2R8Ii5qqnkXXd7gzSa2"
+        //id = window.Android.getUid()
+        if (id && this.state.school_data.admission) {
             addToList("Users", id, this.state.school_data).then(result => {
                 this.setState({ open_snackbar: true })
             })
         }
-        else{
-            this.setState({fail_snackbar:true})
+        else {
+            this.setState({ fail_snackbar: true })
         }
     }
 
@@ -149,6 +196,7 @@ export default class SchoolDisplay extends Component {
         getDoc("Schools", this.props.match.params.id).then(snap => {
             this.setState({ school_data: snap });
         })
+
     }
 
     handleChange = (event, newValue) => {
@@ -196,18 +244,25 @@ export default class SchoolDisplay extends Component {
                                     }
                                 </div>
 
+                                <AntTabs variant="fullWidth" value={this.state.value} onChange={this.handleChange} aria-label="ant example">
+                                    <AntTab label="Overview" />
+                                    <AntTab label="Points" />
+                                    <AntTab label="Admissions" />
+                                    <AntTab label="Fees" />
+                                </AntTabs>
+
                                 <div className="show-all-photos" >
                                     <div>
                                         {
                                             this.state.school_data.admission ? (
-                                                <div style={{color:"#2196f3"}} >
+                                                <div style={{ color: "#2196f3" }} >
                                                     Admissions Open
                                                 </div>
                                             ) : (
-                                                <div style={{color:"#f50057"}} >
-                                                    Sorry, Admissions are closed right now
-                                                </div>
-                                            )
+                                                    <div style={{ color: "#f50057" }} >
+                                                        Sorry, Admissions are closed right now
+                                                    </div>
+                                                )
                                         }
                                     </div>
 
@@ -517,7 +572,7 @@ export default class SchoolDisplay extends Component {
                                     </div>
                                 </div>
 
-                                <div style={{ width: "93%", margin: '30px 0px' }} id="points" >
+                                <div style={{ width: "93%", margin: '30px 0px' }} id="points" ref={this.myDivToFocus} >
                                     <div>
                                         <div style={{ margin: "10px 0px" }} >
                                             <strong>Points System</strong>
@@ -616,11 +671,11 @@ export default class SchoolDisplay extends Component {
                                             this.state.more_info &&
                                             this.state.more_info.map(i => {
                                                 return (
-                                                    <div style={{ boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px" }} >
+                                                    <div style={{ boxShadow: "0px 0px 10px #617ea369", borderRadius: "5px", margin:"15px 0px" }} >
                                                         <div style={{ padding: "15px 10px", color: "white", backgroundColor: "#242429", borderRadius: "5px" }} >
                                                             {i.title}
                                                         </div>
-                                                        <Table aria-label="customized table">
+                                                        <Table aria-label="customized table" >
                                                             <TableBody>
                                                                 {
                                                                     i.items &&

@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import AppBar from '../../Components/AppBar';
 import StudentForm from '../../Components/Schools/Forms/StudentForm';
 import ParentForm from '../../Components/Schools/Forms/ParentForm';
+import Documents from '../../Components/Schools/Forms/Document';
 
 const AntTabs = withStyles({
     root: {
@@ -100,7 +101,7 @@ export class CommonFormPage extends Component {
                         <ParentForm handleChange={this.handleCustomChange}  />
                     </TabPanel>
                     <TabPanel value={this.state.value} index={2}>
-                        Under Construction
+                        <Documents/>
                     </TabPanel>
                 </div>
 
